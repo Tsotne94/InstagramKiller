@@ -1,0 +1,1146 @@
+{
+  "uuid": "600ab038-d46d-4f92-b240-9e1d19697f7a",
+  "lastMigration": 33,
+  "name": "Instagram API",
+  "endpointPrefix": "v1",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "routes": [
+    {
+      "uuid": "c70eb5a8-7190-4943-b678-e8aed7f7a639",
+      "documentation": "Get recent media from a custom geo-id.",
+      "method": "get",
+      "endpoint": "geographies/{geo-id}/media/recent",
+      "responses": [
+        {
+          "uuid": "a11ce960-d613-44ec-9500-5d1d0f76c3a9",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"next_max_id\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of recent media entries from a geography subscription.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c8657b6-87a0-4d4d-a219-3ac728ea39bf",
+      "documentation": "Search for a location by geographic coordinate.",
+      "method": "get",
+      "endpoint": "locations/search",
+      "responses": [
+        {
+          "uuid": "dd821be9-1bce-48c4-92db-9147581e09dd",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"\",\n      \"latitude\": {{faker 'number.float'}},\n      \"longitude\": {{faker 'number.float'}},\n      \"name\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of found locations.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "574fa735-1a95-485d-9e28-39eb9be29da2",
+      "documentation": "Get information about a location.",
+      "method": "get",
+      "endpoint": "locations/{location-id}",
+      "responses": [
+        {
+          "uuid": "603108e5-004c-42e4-b062-9ed647538dc3",
+          "body": "{\n  \"data\": {\n    \"id\": \"\",\n    \"latitude\": {{faker 'number.float'}},\n    \"longitude\": {{faker 'number.float'}},\n    \"name\": \"\"\n  },\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Location information response.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "9e962b2e-b1d3-4547-a87c-593d7e73f1cc",
+      "documentation": "Get a list of recent media objects from a given location.",
+      "method": "get",
+      "endpoint": "locations/{location-id}/media/recent",
+      "responses": [
+        {
+          "uuid": "c461e5c8-d23d-4e2d-80d2-4436199e7452",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"next_max_id\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of media entries from this location.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "0efc5dff-c1f9-4f13-b8c1-cc8df3c5c3c5",
+      "documentation": "Get a list of currently popular media.",
+      "method": "get",
+      "endpoint": "media/popular",
+      "responses": [
+        {
+          "uuid": "b7a50e19-3c7b-455c-859f-998a90b5ea0a",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Found media resources (without likes information).",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4055d9ff-61db-4ddf-962e-2f248d6e8323",
+      "documentation": "Search for media in a given area.",
+      "method": "get",
+      "endpoint": "media/search",
+      "responses": [
+        {
+          "uuid": "1a9aacfa-f9ee-4976-8342-965caca4b3ed",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Found media resources (without likes information) in a given area.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "fc8fd9b8-b0cc-4fff-9afb-0cc771323c7a",
+      "documentation": "Get information about a media object.",
+      "method": "get",
+      "endpoint": "media/shortcode/:shortcode",
+      "responses": [
+        {
+          "uuid": "e2b66a5d-a3d8-4040-a666-4538c3ca24ad",
+          "body": "{\n  \"data\": {\n    \"attribution\": \"\",\n    \"caption\": {\n      \"created_time\": \"\",\n      \"from\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"id\": \"\",\n      \"text\": \"\"\n    },\n    \"comments\": {\n      \"count\": {{faker 'number.int' max=99999}},\n      \"data\": [\n        {\n          \"created_time\": \"\",\n          \"from\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          },\n          \"id\": \"\",\n          \"text\": \"\"\n        }\n      ]\n    },\n    \"created_time\": \"\",\n    \"filter\": \"\",\n    \"id\": \"\",\n    \"images\": {\n      \"low_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      },\n      \"standard_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      },\n      \"thumbnail\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      }\n    },\n    \"likes\": {\n      \"count\": {{faker 'number.int' max=99999}},\n      \"data\": [\n        {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        }\n      ]\n    },\n    \"link\": \"\",\n    \"location\": {\n      \"id\": \"\",\n      \"latitude\": {{faker 'number.float'}},\n      \"longitude\": {{faker 'number.float'}},\n      \"name\": \"\"\n    },\n    \"tags\": [\n      \"\"\n    ],\n    \"type\": \"{{oneOf (array 'image' 'video')}}\",\n    \"user\": {\n      \"full_name\": \"\",\n      \"id\": \"\",\n      \"profile_picture\": \"\",\n      \"username\": \"\"\n    },\n    \"user_has_liked\": {{faker 'datatype.boolean'}},\n    \"users_in_photo\": [\n      {\n        \"position\": {\n          \"x\": {{faker 'number.float'}},\n          \"y\": {{faker 'number.float'}}\n        },\n        \"user\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        }\n      }\n    ],\n    \"videos\": {\n      \"low_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      },\n      \"standard_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      }\n    }\n  },\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Media resource information.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f91f26a5-afe4-400c-b393-362ca7493223",
+      "documentation": "Get information about a media object.",
+      "method": "get",
+      "endpoint": "media/{media-id}",
+      "responses": [
+        {
+          "uuid": "4817a894-73a2-4d2c-ab7d-984fd5e410fd",
+          "body": "{\n  \"data\": {\n    \"attribution\": \"\",\n    \"caption\": {\n      \"created_time\": \"\",\n      \"from\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"id\": \"\",\n      \"text\": \"\"\n    },\n    \"comments\": {\n      \"count\": {{faker 'number.int' max=99999}},\n      \"data\": [\n        {\n          \"created_time\": \"\",\n          \"from\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          },\n          \"id\": \"\",\n          \"text\": \"\"\n        }\n      ]\n    },\n    \"created_time\": \"\",\n    \"filter\": \"\",\n    \"id\": \"\",\n    \"images\": {\n      \"low_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      },\n      \"standard_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      },\n      \"thumbnail\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      }\n    },\n    \"likes\": {\n      \"count\": {{faker 'number.int' max=99999}},\n      \"data\": [\n        {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        }\n      ]\n    },\n    \"link\": \"\",\n    \"location\": {\n      \"id\": \"\",\n      \"latitude\": {{faker 'number.float'}},\n      \"longitude\": {{faker 'number.float'}},\n      \"name\": \"\"\n    },\n    \"tags\": [\n      \"\"\n    ],\n    \"type\": \"{{oneOf (array 'image' 'video')}}\",\n    \"user\": {\n      \"full_name\": \"\",\n      \"id\": \"\",\n      \"profile_picture\": \"\",\n      \"username\": \"\"\n    },\n    \"user_has_liked\": {{faker 'datatype.boolean'}},\n    \"users_in_photo\": [\n      {\n        \"position\": {\n          \"x\": {{faker 'number.float'}},\n          \"y\": {{faker 'number.float'}}\n        },\n        \"user\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        }\n      }\n    ],\n    \"videos\": {\n      \"low_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      },\n      \"standard_resolution\": {\n        \"height\": {{faker 'number.int' max=99999}},\n        \"url\": \"\",\n        \"width\": {{faker 'number.int' max=99999}}\n      }\n    }\n  },\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Media resource information.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "36328fc1-e5c4-443d-853e-d754f339d909",
+      "documentation": "Get a list of recent comments on a media object.",
+      "method": "get",
+      "endpoint": "media/{media-id}/comments",
+      "responses": [
+        {
+          "uuid": "f0f0453a-aab6-4200-b165-487b54754197",
+          "body": "{\n  \"data\": [\n    {\n      \"created_time\": \"\",\n      \"from\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"id\": \"\",\n      \"text\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of comments of the media resource.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "44b2ebb1-b45f-43b9-a0b3-c97a58cc9c46",
+      "documentation": "Create a comment on a media object.",
+      "method": "post",
+      "endpoint": "media/{media-id}/comments",
+      "responses": [
+        {
+          "uuid": "8ebbe916-a82c-47d8-95af-c2a728ef9221",
+          "body": "{\n  \"data\": \"\",\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Result of posting a comment.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "113af6dc-dd26-4eaa-b128-fdd058995a78",
+      "documentation": "Remove a comment.",
+      "method": "delete",
+      "endpoint": "media/{media-id}/comments/{comment-id}",
+      "responses": [
+        {
+          "uuid": "e4d827d3-dcd1-4a91-a679-73c8c0ac5b4f",
+          "body": "{\n  \"data\": \"\",\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Result of deleting a comment.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "e5dc1fce-869f-4072-a614-92859570bf86",
+      "documentation": "Remove a like on this media by the current user.",
+      "method": "delete",
+      "endpoint": "media/{media-id}/likes",
+      "responses": [
+        {
+          "uuid": "a9089cd3-51b5-491e-84b2-f0fda1f4113c",
+          "body": "{\n  \"data\": \"\",\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Result of removing a like.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6dfd7875-c5d1-436d-8968-309b803fce51",
+      "documentation": "Get a list of users who have liked this media.",
+      "method": "get",
+      "endpoint": "media/{media-id}/likes",
+      "responses": [
+        {
+          "uuid": "7f9133ac-09f7-4dd9-955c-b621c1adb104",
+          "body": "{\n  \"data\": [\n    {\n      \"full_name\": \"\",\n      \"id\": \"\",\n      \"profile_picture\": \"\",\n      \"username\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of users who liked the media resource.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "86070c69-9e07-4270-8479-787a8fe50068",
+      "documentation": "Set a like on this media by the current user.",
+      "method": "post",
+      "endpoint": "media/{media-id}/likes",
+      "responses": [
+        {
+          "uuid": "dde34cfa-b298-4d43-81a3-0696c0b19dfc",
+          "body": "{\n  \"data\": \"\",\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Result of setting a like.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "533e7e16-fd76-431d-91bf-8731ab27638e",
+      "documentation": "Search for tags by name.",
+      "method": "get",
+      "endpoint": "tags/search",
+      "responses": [
+        {
+          "uuid": "a14cbeac-c360-4ce8-b9bf-0843a7c547a7",
+          "body": "{\n  \"data\": [\n    {\n      \"media_count\": {{faker 'number.int' max=99999}},\n      \"name\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of found tags and their statistics.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "c7086a76-a2ad-45a8-9ae1-10c7d61879b4",
+      "documentation": "Get information about a tag object.",
+      "method": "get",
+      "endpoint": "tags/{tag-name}",
+      "responses": [
+        {
+          "uuid": "53257eb2-0574-42ac-a78c-962ee0d02897",
+          "body": "{\n  \"data\": {\n    \"media_count\": {{faker 'number.int' max=99999}},\n    \"name\": \"\"\n  },\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Tag information response.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "cd5f2d53-35cb-434d-a7c3-9b7f3427c0cf",
+      "documentation": "Get a list of recently tagged media.",
+      "method": "get",
+      "endpoint": "tags/{tag-name}/media/recent",
+      "responses": [
+        {
+          "uuid": "efc3adab-30fb-43fd-8f90-3df1242f6bb1",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"deprecation_warning\": \"\",\n    \"min_tag_id\": \"\",\n    \"next_max_id\": \"\",\n    \"next_max_tag_id\": \"\",\n    \"next_min_id\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of media entries with this tag.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d180439a-1450-4c13-85fb-bc9c312a7bfa",
+      "documentation": "Search for a user by name.",
+      "method": "get",
+      "endpoint": "users/search",
+      "responses": [
+        {
+          "uuid": "12ec449a-6d00-4e95-80e4-1fb7bf546e07",
+          "body": "{\n  \"data\": [\n    {\n      \"full_name\": \"\",\n      \"id\": \"\",\n      \"profile_picture\": \"\",\n      \"username\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of found users.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "a2282c0b-f9cc-4618-b9da-a9ed00a52e33",
+      "documentation": "See the authenticated user's feed.",
+      "method": "get",
+      "endpoint": "users/self/feed",
+      "responses": [
+        {
+          "uuid": "c1672c07-4cff-4d68-9ad2-cc3cd2b965d4",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"next_max_id\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Users feed entries.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "bbedf24f-7df9-47c4-9dcd-bb4f1e1f72f1",
+      "documentation": "See the list of media liked by the authenticated user.",
+      "method": "get",
+      "endpoint": "users/self/media/liked",
+      "responses": [
+        {
+          "uuid": "e8a73cb0-04c8-49a5-b479-3cfcfd721250",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"next_max_id\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Users media entries.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4957c21e-3a7c-4cd7-9498-08cd1155ebfe",
+      "documentation": "List the users who have requested this user's permission to follow.",
+      "method": "get",
+      "endpoint": "users/self/requested-by",
+      "responses": [
+        {
+          "uuid": "0d97d76a-8cc9-4fa1-a575-ced4b1182086",
+          "body": "{\n  \"data\": [\n    {\n      \"full_name\": \"\",\n      \"id\": \"\",\n      \"profile_picture\": \"\",\n      \"username\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of users who have requested this user's permission to follow.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "cc5094ac-c2c1-43a0-8d95-ead432ba7dba",
+      "documentation": "Get basic information about a user.",
+      "method": "get",
+      "endpoint": "users/{user-id}",
+      "responses": [
+        {
+          "uuid": "328a2578-4aed-4632-af02-996f7261e5b9",
+          "body": "{\n  \"data\": {\n    \"bio\": \"\",\n    \"counts\": {\n      \"followed_by\": {{faker 'number.int' max=99999}},\n      \"follows\": {{faker 'number.int' max=99999}},\n      \"media\": {{faker 'number.int' max=99999}}\n    },\n    \"full_name\": \"\",\n    \"id\": \"\",\n    \"profile_picture\": \"\",\n    \"username\": \"\",\n    \"website\": \"\"\n  },\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "User basic information.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "073ab584-a18b-4cd0-9df3-66fe7f6e6c72",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Not Found, user with such ID does not exist.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f0ec7484-30da-4b00-a31d-abdc42d67b07",
+      "documentation": "Get the list of users this user is followed by.",
+      "method": "get",
+      "endpoint": "users/{user-id}/followed-by",
+      "responses": [
+        {
+          "uuid": "0e01b124-a8dd-41f8-b9d9-e5f19e27b050",
+          "body": "{\n  \"data\": [\n    {\n      \"full_name\": \"\",\n      \"id\": \"\",\n      \"profile_picture\": \"\",\n      \"username\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"next_cursor\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of users this user is followed by.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "fe865d67-d68d-46c5-ad6e-03ee8d692ec2",
+      "documentation": "Get the list of users this user follows.",
+      "method": "get",
+      "endpoint": "users/{user-id}/follows",
+      "responses": [
+        {
+          "uuid": "f6adbc6f-3c10-4e04-959b-3944d38ec6f3",
+          "body": "{\n  \"data\": [\n    {\n      \"full_name\": \"\",\n      \"id\": \"\",\n      \"profile_picture\": \"\",\n      \"username\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"next_cursor\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "List of users this user follows.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7dcad6e8-d6bd-4250-b0e1-7767168685e4",
+      "documentation": "Get the most recent media published by a user.",
+      "method": "get",
+      "endpoint": "users/{user-id}/media/recent",
+      "responses": [
+        {
+          "uuid": "7c8413d9-1727-4fff-b5e6-3932ce16b817",
+          "body": "{\n  \"data\": [\n    {\n      \"attribution\": \"\",\n      \"caption\": {\n        \"created_time\": \"\",\n        \"from\": {\n          \"full_name\": \"\",\n          \"id\": \"\",\n          \"profile_picture\": \"\",\n          \"username\": \"\"\n        },\n        \"id\": \"\",\n        \"text\": \"\"\n      },\n      \"comments\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"created_time\": \"\",\n            \"from\": {\n              \"full_name\": \"\",\n              \"id\": \"\",\n              \"profile_picture\": \"\",\n              \"username\": \"\"\n            },\n            \"id\": \"\",\n            \"text\": \"\"\n          }\n        ]\n      },\n      \"created_time\": \"\",\n      \"filter\": \"\",\n      \"id\": \"\",\n      \"images\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"thumbnail\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      },\n      \"likes\": {\n        \"count\": {{faker 'number.int' max=99999}},\n        \"data\": [\n          {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        ]\n      },\n      \"link\": \"\",\n      \"location\": {\n        \"id\": \"\",\n        \"latitude\": {{faker 'number.float'}},\n        \"longitude\": {{faker 'number.float'}},\n        \"name\": \"\"\n      },\n      \"tags\": [\n        \"\"\n      ],\n      \"type\": \"{{oneOf (array 'image' 'video')}}\",\n      \"user\": {\n        \"full_name\": \"\",\n        \"id\": \"\",\n        \"profile_picture\": \"\",\n        \"username\": \"\"\n      },\n      \"user_has_liked\": {{faker 'datatype.boolean'}},\n      \"users_in_photo\": [\n        {\n          \"position\": {\n            \"x\": {{faker 'number.float'}},\n            \"y\": {{faker 'number.float'}}\n          },\n          \"user\": {\n            \"full_name\": \"\",\n            \"id\": \"\",\n            \"profile_picture\": \"\",\n            \"username\": \"\"\n          }\n        }\n      ],\n      \"videos\": {\n        \"low_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        },\n        \"standard_resolution\": {\n          \"height\": {{faker 'number.int' max=99999}},\n          \"url\": \"\",\n          \"width\": {{faker 'number.int' max=99999}}\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  },\n  \"pagination\": {\n    \"next_max_id\": \"\",\n    \"next_url\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Users media entries.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "304bf7e5-a23d-4aa6-9657-71ed062ac8f4",
+      "documentation": "Get information about a relationship to another user.",
+      "method": "get",
+      "endpoint": "users/{user-id}/relationship",
+      "responses": [
+        {
+          "uuid": "0ec59679-1dfc-4af9-84fa-4251a8b6c539",
+          "body": "{\n  \"data\": {\n    \"incoming_status\": \"{{oneOf (array 'none' 'followed_by' 'requested_by')}}\",\n    \"outgoing_status\": \"{{oneOf (array 'none' 'follows' 'requested')}}\",\n    \"target_user_is_private\": {{faker 'datatype.boolean'}}\n  },\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Relationship information.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4aa87f62-f19f-44a0-ac34-82e8c4b08655",
+      "documentation": "Modify the relationship between the current user and the target user.",
+      "method": "post",
+      "endpoint": "users/{user-id}/relationship",
+      "responses": [
+        {
+          "uuid": "f09719f2-d60b-4354-b3b5-cf39be0b4f4e",
+          "body": "{\n  \"data\": {\n    \"outgoing_status\": \"{{oneOf (array 'none' 'follows' 'requested')}}\"\n  },\n  \"meta\": {\n    \"code\": {{faker 'number.int' max=99999}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Relationship information.",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "type": "http",
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "folders": [],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "c70eb5a8-7190-4943-b678-e8aed7f7a639"
+    },
+    {
+      "type": "route",
+      "uuid": "3c8657b6-87a0-4d4d-a219-3ac728ea39bf"
+    },
+    {
+      "type": "route",
+      "uuid": "574fa735-1a95-485d-9e28-39eb9be29da2"
+    },
+    {
+      "type": "route",
+      "uuid": "9e962b2e-b1d3-4547-a87c-593d7e73f1cc"
+    },
+    {
+      "type": "route",
+      "uuid": "0efc5dff-c1f9-4f13-b8c1-cc8df3c5c3c5"
+    },
+    {
+      "type": "route",
+      "uuid": "4055d9ff-61db-4ddf-962e-2f248d6e8323"
+    },
+    {
+      "type": "route",
+      "uuid": "fc8fd9b8-b0cc-4fff-9afb-0cc771323c7a"
+    },
+    {
+      "type": "route",
+      "uuid": "f91f26a5-afe4-400c-b393-362ca7493223"
+    },
+    {
+      "type": "route",
+      "uuid": "36328fc1-e5c4-443d-853e-d754f339d909"
+    },
+    {
+      "type": "route",
+      "uuid": "44b2ebb1-b45f-43b9-a0b3-c97a58cc9c46"
+    },
+    {
+      "type": "route",
+      "uuid": "113af6dc-dd26-4eaa-b128-fdd058995a78"
+    },
+    {
+      "type": "route",
+      "uuid": "e5dc1fce-869f-4072-a614-92859570bf86"
+    },
+    {
+      "type": "route",
+      "uuid": "6dfd7875-c5d1-436d-8968-309b803fce51"
+    },
+    {
+      "type": "route",
+      "uuid": "86070c69-9e07-4270-8479-787a8fe50068"
+    },
+    {
+      "type": "route",
+      "uuid": "533e7e16-fd76-431d-91bf-8731ab27638e"
+    },
+    {
+      "type": "route",
+      "uuid": "c7086a76-a2ad-45a8-9ae1-10c7d61879b4"
+    },
+    {
+      "type": "route",
+      "uuid": "cd5f2d53-35cb-434d-a7c3-9b7f3427c0cf"
+    },
+    {
+      "type": "route",
+      "uuid": "d180439a-1450-4c13-85fb-bc9c312a7bfa"
+    },
+    {
+      "type": "route",
+      "uuid": "a2282c0b-f9cc-4618-b9da-a9ed00a52e33"
+    },
+    {
+      "type": "route",
+      "uuid": "bbedf24f-7df9-47c4-9dcd-bb4f1e1f72f1"
+    },
+    {
+      "type": "route",
+      "uuid": "4957c21e-3a7c-4cd7-9498-08cd1155ebfe"
+    },
+    {
+      "type": "route",
+      "uuid": "cc5094ac-c2c1-43a0-8d95-ead432ba7dba"
+    },
+    {
+      "type": "route",
+      "uuid": "f0ec7484-30da-4b00-a31d-abdc42d67b07"
+    },
+    {
+      "type": "route",
+      "uuid": "fe865d67-d68d-46c5-ad6e-03ee8d692ec2"
+    },
+    {
+      "type": "route",
+      "uuid": "7dcad6e8-d6bd-4250-b0e1-7767168685e4"
+    },
+    {
+      "type": "route",
+      "uuid": "304bf7e5-a23d-4aa6-9657-71ed062ac8f4"
+    },
+    {
+      "type": "route",
+      "uuid": "4aa87f62-f19f-44a0-ac34-82e8c4b08655"
+    }
+  ],
+  "callbacks": []
+}
