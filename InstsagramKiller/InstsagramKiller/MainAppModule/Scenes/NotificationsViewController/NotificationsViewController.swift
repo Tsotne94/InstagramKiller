@@ -7,22 +7,25 @@
 
 import UIKit
 
-class NotificationsViewController: UIViewController {
+class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    private let tableView = UITableView()
+    private let viewModel = NotificationsVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        setupTableView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    private func setupTableView() {
+           tableView.frame = view.bounds
+           tableView.delegate = self
+           tableView.dataSource = self
+           tableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
+           tableView.separatorStyle = .none
+           view.addSubview(tableView)
+       }
+    
 
 }
