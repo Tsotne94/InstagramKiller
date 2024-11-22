@@ -37,7 +37,14 @@ class TabController: UITabBarController {
     }
     
     private func customizeTabBarAppearance() {
-        tabBar.tintColor = .black
+        let tabBarAppearance = UITabBarAppearance()
+        
+        tabBarAppearance.backgroundColor = UIColor(named: BackgroundColors.accent.rawValue)
+        tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.black
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.black
+        
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
         
         tabBar.itemSpacing = view.bounds.width / 6
         tabBar.itemPositioning = .centered
