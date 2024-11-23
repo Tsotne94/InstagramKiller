@@ -135,13 +135,14 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.numberOfPages = 2
         pageControl.pageIndicatorTintColor = UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor = UIColor.darkGray
+        pageControl.currentPageIndicatorTintColor = UIColor(named: BackgroundColors.blueButton.rawValue)
         
         return pageControl
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         contentView.layoutIfNeeded()
         setUpUI()
     }
@@ -214,7 +215,9 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
             scrollView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
         ])
         
-        scrollView.contentSize = CGSize(width: contentView.bounds.width * 2.5, height: 200)
+            scrollView.layoutIfNeeded()
+            scrollView.contentSize = CGSize(width: scrollView.bounds.width * 2.6, height: scrollView.bounds.height)
+
     }
     
     private func setupFeedImage() {
