@@ -15,6 +15,7 @@ class homePageViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: BackgroundColors.accent.rawValue)
         setupTitle()
         setupTableView()
         tableView.dataSource = self
