@@ -9,22 +9,132 @@ import UIKit
 
 class HomePageCell: UITableViewCell {
     static let identifier = "HomePageCell"
-    let profileIcon = UIImageView()
-    let usernameLabel = UILabel()
-    let userLocation = UILabel()
-    let verificationIcon = UIImageView()
-    let postImage = UIImageView()
-    let postImageTwo = UIImageView()
-    let favouritesIcon = UIButton()
-    let commentIcon = UIButton()
-    let shareIcon = UIButton()
-    let likedMiniProfileIcon = UIImageView()
-    let commentTextLabel = UILabel()
-    let commentUserName = UILabel()
-    let userCommentLabel = UILabel()
-    let dateLabel = UILabel()
-    let scrollView = UIScrollView()
-    let pageControl = UIPageControl()
+    
+    let profileIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 15
+        imageView.clipsToBounds = true
+        
+        return imageView
+    }()
+    
+    let usernameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 13, weight: .bold)
+        
+        return label
+    }()
+    
+    let userLocation: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 11)
+        
+        return label
+    }()
+    
+    let verificationIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = .verificationIcon
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    let postImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    let postImageTwo: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        return imageView
+    }()
+    
+    let favouritesIcon: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(resource: .favouritesIcon), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let commentIcon: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(resource: .commentIcon), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let shareIcon: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(resource: .shareIcon), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let likedMiniProfileIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    let commentTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let commentUserName: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let userCommentLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    let dateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isPagingEnabled = true
+        scrollView.bounces = false
+        scrollView.backgroundColor = .red
+        
+        return scrollView
+    }()
+    
+    let pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        
+        return pageControl
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,9 +163,6 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpProfileIcon() {
-        profileIcon.translatesAutoresizingMaskIntoConstraints = false
-        profileIcon.layer.cornerRadius = 15
-        profileIcon.clipsToBounds = true
         contentView.addSubview(profileIcon)
         NSLayoutConstraint.activate([
             profileIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
@@ -66,8 +173,6 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpUserNameLabel() {
-        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
-        usernameLabel.font = .systemFont(ofSize: 13, weight: .bold)
         contentView.addSubview(usernameLabel)
         NSLayoutConstraint.activate([
             usernameLabel.leadingAnchor.constraint(equalTo: profileIcon.trailingAnchor, constant: 10),
@@ -76,8 +181,6 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setupVerificationIcon() {
-        verificationIcon.image = .verificationIcon
-        verificationIcon.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(verificationIcon)
         NSLayoutConstraint.activate([
             verificationIcon.leadingAnchor.constraint(equalTo: usernameLabel.trailingAnchor, constant: 5),
@@ -88,21 +191,14 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpUserLocation() {
-        userLocation.translatesAutoresizingMaskIntoConstraints = false
-        userLocation.font = .systemFont(ofSize: 11)
         contentView.addSubview(userLocation)
         NSLayoutConstraint.activate([
             userLocation.leadingAnchor.constraint(equalTo: usernameLabel.leadingAnchor),
             userLocation.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5),
-            ])
+        ])
     }
     
     private func setUpScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.isPagingEnabled = true
-        scrollView.bounces = false
-        scrollView.backgroundColor = .red
         contentView.addSubview(scrollView)
 
         NSLayoutConstraint.activate([
@@ -116,10 +212,7 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setupFeedImage() {
-        postImage.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(postImage)
-        
-        postImageTwo.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(postImageTwo)
         
         NSLayoutConstraint.activate([
@@ -136,8 +229,6 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpFavouritesIcon() {
-        favouritesIcon.setImage(UIImage(resource: .favouritesIcon), for: .normal)
-        favouritesIcon.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(favouritesIcon)
         NSLayoutConstraint.activate([
             favouritesIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
@@ -146,8 +237,6 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpCommentIcon() {
-        commentIcon.setImage(UIImage(resource: .commentIcon), for: .normal)
-        commentIcon.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(commentIcon)
         NSLayoutConstraint.activate([
             commentIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
@@ -156,10 +245,8 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpShareIcon() {
-        shareIcon.setImage(UIImage(resource: .shareIcon), for: .normal)
-        shareIcon.translatesAutoresizingMaskIntoConstraints = false
-        shareIcon.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         contentView.addSubview(shareIcon)
+        shareIcon.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         NSLayoutConstraint.activate([
             shareIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
             shareIcon.leadingAnchor.constraint(equalTo: commentIcon.trailingAnchor, constant: 15),
@@ -168,9 +255,6 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpCommentProfileIcon() {
-        likedMiniProfileIcon.layer.cornerRadius = 10
-        likedMiniProfileIcon.clipsToBounds = true
-        likedMiniProfileIcon.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(likedMiniProfileIcon)
         NSLayoutConstraint.activate([
             likedMiniProfileIcon.topAnchor.constraint(equalTo: favouritesIcon.bottomAnchor, constant: 15),
@@ -181,7 +265,6 @@ class HomePageCell: UITableViewCell {
     }
     
     private func setUpCommentTextlabel() {
-        commentTextLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(commentTextLabel)
         NSLayoutConstraint.activate([
             commentTextLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.trailingAnchor, constant: 15),
@@ -191,8 +274,6 @@ class HomePageCell: UITableViewCell {
     }
 
     private func setUpUserCommentLabel() {
-        userCommentLabel.translatesAutoresizingMaskIntoConstraints = false
-        userCommentLabel.numberOfLines = 0
         contentView.addSubview(userCommentLabel)
         NSLayoutConstraint.activate([
             userCommentLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.leadingAnchor),
@@ -201,15 +282,14 @@ class HomePageCell: UITableViewCell {
         ])
     }
     
-        private func setUpDateLabel() {
-            dateLabel.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(dateLabel)
-            NSLayoutConstraint.activate([
-                dateLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.leadingAnchor),
-                dateLabel.topAnchor.constraint(equalTo: userCommentLabel.bottomAnchor, constant: 15),
-                dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
-                ])
-        }
+    private func setUpDateLabel() {
+        contentView.addSubview(dateLabel)
+        NSLayoutConstraint.activate([
+            dateLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.leadingAnchor),
+            dateLabel.topAnchor.constraint(equalTo: userCommentLabel.bottomAnchor, constant: 15),
+            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+        ])
+    }
     
     func configure(profileIcon: URL?, usernameLabel: String, userLocation: String, postImage: URL?, likedMiniProfileIcon: URL?, commentTextLabel: String, userCommentLabel: String, dateLabel: String) {
         
