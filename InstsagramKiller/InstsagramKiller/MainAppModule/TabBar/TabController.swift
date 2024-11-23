@@ -16,11 +16,7 @@ class TabController: UITabBarController {
         let home = createTab(iconActive: Icons.homePageHighlighted.rawValue, iconInactive: Icons.homePage.rawValue, vc: homePageViewController())
         let discover = createTab(iconActive: Icons.searchHighlighted.rawValue , iconInactive: Icons.search.rawValue, vc: DiscoverPageViewController())
         let addContent = createTab(iconActive: Icons.addContent.rawValue , iconInactive: Icons.addContent.rawValue, vc: UIViewController())
-        let notificationsVC = NotificationsViewController()
-        notificationsVC.title = "You"
-        let notifications = createTab(iconActive: Icons.favouritesHighlighted.rawValue,
-                                      iconInactive: Icons.favourites.rawValue,
-                                      vc: UINavigationController(rootViewController: notificationsVC))
+        let notifications = createTab(iconActive: Icons.favouritesHighlighted.rawValue , iconInactive: Icons.favourites.rawValue, vc: NotificationsViewController())
         let profileDetailsScreen = createTab(iconActive: "bookmarkActive", iconInactive: "bookmarkInactive", vc: ProfileDetailsViewController())
         
         customizeTabBarAppearance()
