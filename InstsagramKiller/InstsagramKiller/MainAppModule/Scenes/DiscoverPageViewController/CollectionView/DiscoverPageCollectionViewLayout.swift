@@ -18,17 +18,6 @@ class DiscoverPageCollectionViewLayout: UICollectionViewCompositionalLayout {
     
     static private func createLayoutSection(sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
         
-        func createSquareItem() -> NSCollectionLayoutItem {
-            let square = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1/2),
-                    heightDimension: .fractionalHeight(1)
-                )
-            )
-            square.contentInsets = .init(top: 0, leading: 0, bottom: 1, trailing: 1)
-            return square
-        }
-        
         let tallItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1/3),
@@ -66,5 +55,16 @@ class DiscoverPageCollectionViewLayout: UICollectionViewCompositionalLayout {
         
         let section = NSCollectionLayoutSection(group: sectionGroup)
         return section
+    }
+    
+    private static func createSquareItem() -> NSCollectionLayoutItem {
+        let square = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1/2),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        square.contentInsets = .init(top: 0, leading: 0, bottom: 1, trailing: 1)
+        return square
     }
 }

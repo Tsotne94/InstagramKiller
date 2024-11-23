@@ -30,17 +30,15 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        self.addSubview(collectionView)
-        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(collectionView)
+
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-        
-        
     }
 
     // MARK: - UICollectionViewDataSource
@@ -56,7 +54,7 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverPageCollectionViewCell.reuseIdentifier, for: indexPath) as! DiscoverPageCollectionViewCell
         
-        let imageName = "i\(indexPath.row+1)"
+        let imageName = "i\(indexPath.item+1)"
         
         if let image = UIImage(named: imageName) {
             cell.setImage(image)
