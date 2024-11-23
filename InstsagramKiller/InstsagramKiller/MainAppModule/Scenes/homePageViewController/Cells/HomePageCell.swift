@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomePageCell: UITableViewCell {
+class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     static let identifier = "HomePageCell"
     
     let profileIcon: UIImageView = {
@@ -53,7 +53,7 @@ class HomePageCell: UITableViewCell {
     let postImageTwo: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return imageView
     }()
     
@@ -132,6 +132,10 @@ class HomePageCell: UITableViewCell {
     
     let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.numberOfPages = 2
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = UIColor.darkGray
         
         return pageControl
     }()
@@ -160,6 +164,7 @@ class HomePageCell: UITableViewCell {
         setUpCommentTextlabel()
         setUpUserCommentLabel()
         setUpDateLabel()
+        setupPageControl()
     }
     
     private func setUpProfileIcon() {
@@ -177,7 +182,7 @@ class HomePageCell: UITableViewCell {
         NSLayoutConstraint.activate([
             usernameLabel.leadingAnchor.constraint(equalTo: profileIcon.trailingAnchor, constant: 10),
             usernameLabel.topAnchor.constraint(equalTo: profileIcon.topAnchor),
-            ])
+        ])
     }
     
     private func setupVerificationIcon() {
@@ -200,7 +205,8 @@ class HomePageCell: UITableViewCell {
     
     private func setUpScrollView() {
         contentView.addSubview(scrollView)
-
+        scrollView.delegate = self
+        
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.topAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: 20),
@@ -220,12 +226,12 @@ class HomePageCell: UITableViewCell {
             postImage.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             postImage.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             postImage.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-
+            
             postImageTwo.topAnchor.constraint(equalTo: scrollView.topAnchor),
             postImageTwo.leftAnchor.constraint(equalTo: postImage.rightAnchor),
             postImageTwo.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             postImageTwo.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-                ])
+        ])
     }
     
     private func setUpFavouritesIcon() {
@@ -251,7 +257,7 @@ class HomePageCell: UITableViewCell {
             shareIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
             shareIcon.leadingAnchor.constraint(equalTo: commentIcon.trailingAnchor, constant: 15),
         ])
-
+        
     }
     
     private func setUpCommentProfileIcon() {
@@ -270,9 +276,9 @@ class HomePageCell: UITableViewCell {
             commentTextLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.trailingAnchor, constant: 15),
             commentTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             commentTextLabel.topAnchor.constraint(equalTo: favouritesIcon.bottomAnchor, constant: 15)
-            ])
+        ])
     }
-
+    
     private func setUpUserCommentLabel() {
         contentView.addSubview(userCommentLabel)
         NSLayoutConstraint.activate([
@@ -291,6 +297,15 @@ class HomePageCell: UITableViewCell {
         ])
     }
     
+    private func setupPageControl() {
+        contentView.addSubview(pageControl)
+        NSLayoutConstraint.activate([
+            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            pageControl.heightAnchor.constraint(equalToConstant: 20),
+            pageControl.centerYAnchor.constraint(equalTo: shareIcon.centerYAnchor)
+        ])
+    }
+    
     func configure(profileIcon: URL?, usernameLabel: String, userLocation: String, postImage: URL?, likedMiniProfileIcon: URL?, commentTextLabel: String, userCommentLabel: String, dateLabel: String) {
         
         self.usernameLabel.text = usernameLabel
@@ -305,34 +320,40 @@ class HomePageCell: UITableViewCell {
     
     func loadImage(from url: URL?, into imageView: UIImageView) {
         guard let url else { return }
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data, error == nil {
-                    DispatchQueue.main.async {
-                        imageView.image = UIImage(data: data)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        imageView.image = UIImage(named: "defaultImage")
-                    }
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data, error == nil {
+                DispatchQueue.main.async {
+                    imageView.image = UIImage(data: data)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    imageView.image = UIImage(named: "defaultImage")
                 }
             }
-            task.resume()
         }
+        task.resume()
+    }
     
-        @objc func shareButtonTapped() {
-            let text = "Check out this awesome content!"
-            let image = UIImage(named: "exampleImage")
-            
-            let items: [Any] = [text, image].compactMap { $0 }
-            
-            let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            
-            activityViewController.excludedActivityTypes = [
-                .addToReadingList, .airDrop, .assignToContact, .postToFacebook, .postToTwitter
-            ]
-            
-            if let viewController = self.window?.rootViewController {
-                viewController.present(activityViewController, animated: true, completion: nil)
-            }
+    @objc func shareButtonTapped() {
+        let text = "Check out this awesome content!"
+        let image = UIImage(named: "exampleImage")
+        
+        let items: [Any] = [text, image].compactMap { $0 }
+        
+        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        activityViewController.excludedActivityTypes = [
+            .addToReadingList, .airDrop, .assignToContact, .postToFacebook, .postToTwitter
+        ]
+        
+        if let viewController = self.window?.rootViewController {
+            viewController.present(activityViewController, animated: true, completion: nil)
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageWidth = scrollView.frame.width
+        let page = Int(round(scrollView.contentOffset.x / pageWidth))
+        pageControl.currentPage = page
+    }
 }
