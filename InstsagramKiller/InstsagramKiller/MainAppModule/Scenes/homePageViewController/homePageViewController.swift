@@ -20,13 +20,18 @@ class homePageViewController: UIViewController, UITableViewDataSource {
         tableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     private func setupTitle() {
         header.image = .instagramLogo
         header.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(header)
         
         NSLayoutConstraint.activate([
-            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             header.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
