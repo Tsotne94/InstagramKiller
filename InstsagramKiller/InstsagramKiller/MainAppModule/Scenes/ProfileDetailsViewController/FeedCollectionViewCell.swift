@@ -14,7 +14,7 @@ class FeedCollectionViewCell: UITableViewCell {
     
     private let FeedImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -29,8 +29,6 @@ class FeedCollectionViewCell: UITableViewCell {
             FeedImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             FeedImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             FeedImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            FeedImageView.widthAnchor.constraint(equalToConstant: 124),
-            FeedImageView.widthAnchor.constraint(equalToConstant: 139),
         ])
     }
 

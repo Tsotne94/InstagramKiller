@@ -123,12 +123,9 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     private let feedCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = .clear
-        collection.backgroundColor = .red
+        collection.backgroundColor = .white
         collection.isScrollEnabled = false
         return collection
     }()
@@ -222,8 +219,8 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         
         NSLayoutConstraint.activate([
             feedCollection.topAnchor.constraint(equalTo: editButton.bottomAnchor, constant: 20),
-            feedCollection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 11),
-            feedCollection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -11),
+            feedCollection.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            feedCollection.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             feedCollection.heightAnchor.constraint(equalToConstant: calculateHeight()),
             feedCollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
@@ -252,7 +249,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     private func calculateHeight() -> CGFloat {
         let rows = ceil(CGFloat(imageArr.count) / 3.0)
         let itemHeight: CGFloat = 139
-        let verticalSpacing: CGFloat = 10
+        let verticalSpacing: CGFloat = 2
         let totalHeight = (rows * itemHeight) + ((rows - 1) * verticalSpacing)
         return totalHeight
     }
@@ -274,15 +271,15 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     // MARK: - Collection View FlowLayout Delegate Methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return 1
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           return CGSize(width: 124, height: 139)
+        let width = (collectionView.frame.width - 2) / 3
+        return CGSize(width: width, height: 138)
       }
 }
