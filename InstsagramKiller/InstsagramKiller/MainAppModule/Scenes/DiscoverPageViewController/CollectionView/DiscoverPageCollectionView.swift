@@ -9,11 +9,14 @@ import Foundation
 class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     private var collectionView: UICollectionView!
-    private let customLayout = DiscoverPageCollectionViewLayout() // Custom layout
+    private let customLayout = DiscoverPageCollectionViewLayout()
+    
+    let imageNames = (1...21).map { "i\($0)" }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCollectionView()
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -39,24 +42,24 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+        
+        collectionView.register(DiscoverPageSearchBarView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DiscoverPageSearchBarView.reuseIdentifier
+        )
     }
 
     // MARK: - UICollectionViewDataSource
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 21
+        imageNames.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverPageCollectionViewCell.reuseIdentifier, for: indexPath) as! DiscoverPageCollectionViewCell
         
-        let imageName = "i\(indexPath.item+1)"
-        
-        if let image = UIImage(named: imageName) {
+        if let image = UIImage(named: imageNames[indexPath.item]) {
             cell.setImage(image)
         }
         
@@ -64,5 +67,11 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
     }
     
     // MARK: - UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let searchView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DiscoverPageSearchBarView.reuseIdentifier , for: indexPath) as! DiscoverPageSearchBarView
+        return searchView
+    }
 }
+
+
 

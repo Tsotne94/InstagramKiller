@@ -83,3 +83,4 @@ class DiscoverPageCollectionViewLayout: UICollectionViewCompositionalLayout {
         return squareGroup
     }
 }
+
