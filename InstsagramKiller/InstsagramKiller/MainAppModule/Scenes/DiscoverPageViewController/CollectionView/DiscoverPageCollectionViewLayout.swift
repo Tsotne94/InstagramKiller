@@ -41,7 +41,7 @@ class DiscoverPageCollectionViewLayout: UICollectionViewCompositionalLayout {
         let tallItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1/3),
-                heightDimension: .fractionalHeight(0.997)
+                heightDimension: .fractionalHeight(1)
             )
         )
         return tallItem
@@ -51,7 +51,7 @@ class DiscoverPageCollectionViewLayout: UICollectionViewCompositionalLayout {
         let square = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1/2),
-                heightDimension: .fractionalHeight(0.997)
+                heightDimension: .fractionalHeight(1)
             )
         )
         return square
@@ -71,6 +71,8 @@ class DiscoverPageCollectionViewLayout: UICollectionViewCompositionalLayout {
     }
     
     private static func createSquareItemVerticalPair(from firstitem: NSCollectionLayoutItem, and secondItem: NSCollectionLayoutItem) -> NSCollectionLayoutGroup {
+        firstitem.contentInsets = .init(top: 0.5, leading: 0, bottom: 0, trailing: 0)
+        secondItem.contentInsets = .init(top: 0.5, leading: 0, bottom: 0, trailing: 0)
         let squareGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(2/3),
