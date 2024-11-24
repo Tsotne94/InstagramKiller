@@ -10,6 +10,7 @@ import Foundation
 
 class homePageViewController: UIViewController, UITableViewDataSource {
     
+    let viewModel = homePageViewModel()
     let tableView = UITableView()
     var header = UIImageView()
     
@@ -19,11 +20,20 @@ class homePageViewController: UIViewController, UITableViewDataSource {
         setupTitle()
         setupTableView()
         tableView.dataSource = self
+        fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    private func fetchData() {
+        viewModel.getPosts { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     private func setupTitle() {
@@ -50,12 +60,13 @@ class homePageViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        viewModel.posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = viewModel.posts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: HomePageCell.identifier, for: indexPath) as! HomePageCell
-        cell.configure(profileIcon: .init(string: "https://picsum.photos/200/300"), usernameLabel: "Joshua l", userLocation: "Tokyo, Japan", postImage: .init(string: "https://picsum.photos/200/300"), likedMiniProfileIcon: .init(string: "https://picsum.photos/200/300"), commentTextLabel: "Liked By", userCommentLabel: "joshua_l The game in Japan was amazing i want to share some photos", dateLabel: "September 19")
+        cell.configure(with: model)
         return cell
     }
 }

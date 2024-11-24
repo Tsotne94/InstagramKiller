@@ -15,6 +15,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     static let identifier = "ProfileDetailsCell"
     weak var delegate: ProfileDetailsCellDelegate?
+    var imageArr: [UIImage] = []
     
     private let profileDetailsView: UIView = {
         let profileDetailsView = UIView()
@@ -25,7 +26,6 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     private let headerUsername: UILabel = {
         let headerUsername = UILabel()
-        headerUsername.text = "jacob_w"
         headerUsername.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 16)
         headerUsername.textColor = .tesxt
         headerUsername.textAlignment = .center
@@ -44,7 +44,6 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     private let profileImage: UIImageView = {
         let profileImage = UIImageView()
-        profileImage.image = UIImage(named: "vaso")
         profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = 46.5
@@ -148,8 +147,6 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         return collection
     }()
     
-    let imageArr: [UIImage] = (1...13).compactMap { UIImage(named: "image\($0)") }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(profileDetailsView)
@@ -164,7 +161,6 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     private func setupUI() {
         setupLayout()
-        setupFollowersStackView()
         setupBioStackView()
         setupCollectionView()
     }
@@ -200,6 +196,9 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
             profileImage.widthAnchor.constraint(equalToConstant: 93),
             profileImage.heightAnchor.constraint(equalToConstant: 93),
             
+            followersInfoStackView.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor),
+            followersInfoStackView.rightAnchor.constraint(equalTo: profileDetailsView.rightAnchor, constant: -10),
+            
             addStoryIcon.bottomAnchor.constraint(equalTo: profileImageContainer.bottomAnchor, constant: -2),
             addStoryIcon.rightAnchor.constraint(equalTo: profileImageContainer.rightAnchor, constant: -2),
             addStoryIcon.widthAnchor.constraint(equalToConstant: 24),
@@ -208,7 +207,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
             editButton.topAnchor.constraint(equalTo: bioStackView.bottomAnchor, constant: 20),
             editButton.leftAnchor.constraint(equalTo: profileDetailsView.leftAnchor, constant: 16),
             editButton.rightAnchor.constraint(equalTo: profileDetailsView.rightAnchor, constant: -16),
-            editButton.heightAnchor.constraint(equalToConstant: 30)
+            editButton.heightAnchor.constraint(equalToConstant: 30),
         ])
     }
     
@@ -230,21 +229,6 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
             }
         }
         delegate?.didPressEditButton()
-    }
-    
-    
-    private func setupFollowersStackView() {
-        let postsStack = createInfoStack(number: "54", label: "Posts")
-        let followersStack = createInfoStack(number: "874", label: "Followers")
-        let followingsStack = createInfoStack(number: "162", label: "Following")
-        followersInfoStackView.addArrangedSubview(postsStack)
-        followersInfoStackView.addArrangedSubview(followersStack)
-        followersInfoStackView.addArrangedSubview(followingsStack)
-        
-        NSLayoutConstraint.activate([
-            followersInfoStackView.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor),
-            followersInfoStackView.rightAnchor.constraint(equalTo: profileDetailsView.rightAnchor, constant: -10),
-        ])
     }
     
     private func setupBioStackView() {
@@ -300,6 +284,60 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         let verticalSpacing: CGFloat = 1
         let totalHeight = (rows * itemHeight) + ((rows - 1) * verticalSpacing)
         return totalHeight
+    }
+    
+    //var imageArr: [UIImage] = (1...13).compactMap { UIImage(named: "image\($0)") }
+    
+    func configure(with user: UserModel) {
+        let postsStack = createInfoStack(number: "\(imageArr.count)", label: "Posts")
+        let followersStack = createInfoStack(number: "\(user.counts.followers)", label: "Followers")
+        let followingsStack = createInfoStack(number: "\(user.counts.following)", label: "Following")
+        followersInfoStackView.addArrangedSubview(postsStack)
+        followersInfoStackView.addArrangedSubview(followersStack)
+        followersInfoStackView.addArrangedSubview(followingsStack)
+        loadProfileImage(from: user.profilePicture, into: profileImage)
+        
+        loadFeedImages(from: user.photos) { images in
+            self.imageArr = images
+            self.feedCollection.reloadData()
+            self.feedCollection.layoutIfNeeded()
+        }
+        
+        usernameLabel.text = user.username
+        headerUsername.text = user.fullName
+        bioText.text = user.description
+        feedCollection.reloadData()
+    }
+    
+    func loadFeedImages(from urls: [URL], completion: @escaping ([UIImage]) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            var images = [UIImage]()
+            
+            for url in urls {
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    images.append(image)
+                } else {
+                    images.append(UIImage(named: "...")!)
+                }
+            }
+            DispatchQueue.main.async {
+                completion(images)
+            }
+        }
+    }
+    
+    func loadProfileImage(from url: URL, into imageView: UIImageView) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    imageView.image = image
+                }
+            } else {
+                DispatchQueue.main.async {
+                    imageView.image = UIImage(named: "...")
+                }
+            }
+        }
     }
     
     // MARK: - Collection View DataSource Methods
