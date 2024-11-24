@@ -22,7 +22,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let usernameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 13, weight: .bold)
+        label.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 13)
         
         return label
     }()
@@ -93,6 +93,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let commentTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: IGFonts.sfRegullar.rawValue, size: 13)
         
         return label
     }()
@@ -143,6 +144,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let andOthersLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "And others"
         
         return label
     }()
@@ -150,6 +152,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let likedByUsernameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "janedoe123"
 
         return label
     }()
@@ -176,7 +179,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         setUpCommentIcon()
         setUpShareIcon()
         setUpCommentProfileIcon()
-        setUpCommentTextlabel()
+        setUpCommentTextLabel()
         setUpUserCommentLabel()
         setUpDateLabel()
         setupPageControl()
@@ -256,6 +259,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         NSLayoutConstraint.activate([
             favouritesIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
             favouritesIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            favouritesIcon.heightAnchor.constraint(equalToConstant: 23)
         ])
     }
     
@@ -264,6 +268,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         NSLayoutConstraint.activate([
             commentIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
             commentIcon.leadingAnchor.constraint(equalTo: favouritesIcon.trailingAnchor, constant: 15),
+            commentIcon.heightAnchor.constraint(equalTo: favouritesIcon.heightAnchor)
         ])
     }
     
@@ -273,6 +278,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         NSLayoutConstraint.activate([
             shareIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
             shareIcon.leadingAnchor.constraint(equalTo: commentIcon.trailingAnchor, constant: 15),
+            shareIcon.heightAnchor.constraint(equalTo: favouritesIcon.heightAnchor)
         ])
         
     }
@@ -287,24 +293,36 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         ])
     }
     
-    private func setUpCommentTextlabel() {
+    private func setUpCommentTextLabel() {
         contentView.addSubview(commentTextLabel)
-        NSLayoutConstraint.activate([
-            commentTextLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.trailingAnchor, constant: 15),
-            commentTextLabel.topAnchor.constraint(equalTo: favouritesIcon.bottomAnchor, constant: 15)
-        ])
         contentView.addSubview(likedByUsernameLabel)
+        contentView.addSubview(andOthersLabel)
+        
         NSLayoutConstraint.activate([
-            likedByUsernameLabel.leadingAnchor.constraint(equalTo: commentTextLabel.trailingAnchor, constant: 5),
-            likedByUsernameLabel.centerYAnchor.constraint(equalTo: commentTextLabel.centerYAnchor)
+            commentTextLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.trailingAnchor, constant: 5),
+            commentTextLabel.topAnchor.constraint(equalTo: favouritesIcon.bottomAnchor, constant: 15),
+            commentTextLabel.trailingAnchor.constraint(lessThanOrEqualTo: likedByUsernameLabel.leadingAnchor, constant: -5)
         ])
         
-        contentView.addSubview(andOthersLabel)
+        NSLayoutConstraint.activate([
+            likedByUsernameLabel.leadingAnchor.constraint(equalTo: commentTextLabel.trailingAnchor, constant: 5),
+            likedByUsernameLabel.centerYAnchor.constraint(equalTo: commentTextLabel.centerYAnchor),
+            likedByUsernameLabel.trailingAnchor.constraint(lessThanOrEqualTo: andOthersLabel.leadingAnchor, constant: -5)
+        ])
+        
         NSLayoutConstraint.activate([
             andOthersLabel.leadingAnchor.constraint(equalTo: likedByUsernameLabel.trailingAnchor, constant: 5),
             andOthersLabel.centerYAnchor.constraint(equalTo: commentTextLabel.centerYAnchor),
-            andOthersLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10)
         ])
+        
+        commentTextLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        commentTextLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
+        likedByUsernameLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        likedByUsernameLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        
+        andOthersLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        andOthersLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
     private func setUpUserCommentLabel() {
@@ -320,9 +338,13 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         contentView.addSubview(dateLabel)
         NSLayoutConstraint.activate([
             dateLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.leadingAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             dateLabel.topAnchor.constraint(equalTo: userCommentLabel.bottomAnchor, constant: 15),
-            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
         ])
+        
+        dateLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        dateLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
     
     private func setupPageControl() {
@@ -334,7 +356,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         ])
     }
     
-    func configure(profileIcon: URL?, usernameLabel: String, userLocation: String, postImage: URL?, likedMiniProfileIcon: URL?, commentTextLabel: String, userCommentLabel: String, dateLabel: String) {
+    func configure(profileIcon: URL?, usernameLabel: String, userLocation: String, postImage: URL?, likedMiniProfileIcon: URL?,  commentTextLabel: String, userCommentLabel: String, dateLabel: String) {
         
         self.usernameLabel.text = usernameLabel
         self.userLocation.text = userLocation
@@ -384,6 +406,10 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         let page = Int(round(scrollView.contentOffset.x / pageWidth))
         pageControl.currentPage = page
     }
+    
+    func favoriteIconTapped() {
+        
+    }
 
 //    func configureLikedBy(with like: Likes, othersCount: Int) {
 //        commentUserName.text = "Liked by"
@@ -397,3 +423,4 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
 //        }
 //    }
 }
+
