@@ -11,6 +11,7 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
     
     private var collectionView: UICollectionView!
     private let customLayout = DiscoverPageCollectionViewLayout()
+    private let viewModel = DiscoverPageViewModel()
     
     let imageNames = (1...21).map { "i\($0)" }
     
@@ -69,14 +70,8 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
     // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let searchView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DiscoverPageSearchBarView.reuseIdentifier , for: indexPath) as! DiscoverPageSearchBarView
-        searchView.delegate = self
+        searchView.setDelegate(viewModel)
         return searchView
-    }
-}
-
-extension DiscoverPageCollectionView: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            print("Search text: \(searchText)")
     }
 }
 
