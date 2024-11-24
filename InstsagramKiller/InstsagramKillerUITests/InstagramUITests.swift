@@ -10,7 +10,11 @@ import XCTest
 
 final class InstagramUITests: InstagramUIElements {
     func testPictureSwipeOnPost() {
-        firstPostOnFeed.waitForExistence(timeout: 20)
+        guard firstPostOnFeed.waitForExistence(timeout: 20) else {
+            XCTFail("Post on feed did not appear in time.")
+            return
+        }
+        
         firstPostOnFeed.swipeLeft(velocity: .fast)
         XCTAssertTrue(pageIndicatorOnFirstPost == "page 2 of 3")
         
@@ -19,15 +23,27 @@ final class InstagramUITests: InstagramUIElements {
     }
     
     func testShareButtonOnPost() {
-        firstPostOnFeed.waitForExistence(timeout: 20)
+        guard firstPostOnFeed.waitForExistence(timeout: 20) else {
+            XCTFail("Post on feed did not appear in time.")
+            return
+        }
+        
         shareIcon.tap()
-        popupWindowOnShareButton.waitForExistence(timeout: 20)
+        guard popupWindowOnShareButton.waitForExistence(timeout: 20) else {
+            XCTFail("Post on feed did not appear in time.")
+            return
+        }
+        
         XCTAssertTrue(popupWindowOnShareButton.exists)
     }
     
     func testSearchBarOnSearchTab() {
-        firstPostOnFeed.waitForExistence(timeout: 20)
+        guard firstPostOnFeed.waitForExistence(timeout: 20) else {
+            XCTFail("Post on feed did not appear in time.")
+            return
+        }
         discoverTab.tap()
+        
         XCTAssertTrue(searchFieldOnDiscoverTab.exists)
     }
 }
