@@ -12,7 +12,8 @@ struct LikeNotification {
 
 struct NotificationItem {
     let profileImage: String
-    let message: String
+    let username: String
+    let action: String
     let timestamp: String
     let postImage: String?
 }
