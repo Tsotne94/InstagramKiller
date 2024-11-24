@@ -51,6 +51,9 @@
 				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
 				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
 				MainAppModule/Scenes/NotificationsViewController/NotificationsViewController.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/EditProfileVC/EditProfileVC.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/FeedCollectionViewCell.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsCell.swift,
 				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsViewController.swift,
 				Resources/Fonts/Fonts.swift,
 				"Resources/Fonts/SF-Pro-Text-Regular.otf",
@@ -68,6 +71,9 @@
 				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
 				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
 				MainAppModule/Scenes/NotificationsViewController/NotificationsViewController.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/EditProfileVC/EditProfileVC.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/FeedCollectionViewCell.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsCell.swift,
 				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsViewController.swift,
 				Resources/Fonts/Fonts.swift,
 				"Resources/Fonts/SF-Pro-Text-Regular.otf",
@@ -334,7 +340,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6769JBWNT9;
+				DEVELOPMENT_TEAM = 77KXDW4YRP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InstsagramKiller/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -361,7 +367,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6769JBWNT9;
+				DEVELOPMENT_TEAM = 77KXDW4YRP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InstsagramKiller/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
