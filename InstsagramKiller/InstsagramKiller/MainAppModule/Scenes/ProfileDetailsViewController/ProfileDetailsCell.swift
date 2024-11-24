@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol ProfileDetailsCellDelegate: AnyObject {
+    func didPressEditButton()
+}
+
 class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     static let identifier = "ProfileDetailsCell"
+    weak var delegate: ProfileDetailsCellDelegate?
     
     private let profileDetailsView: UIView = {
         let profileDetailsView = UIView()
@@ -38,13 +43,21 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     private let profileImage: UIImageView = {
         let profileImage = UIImageView()
-        profileImage.image = UIImage(named: "zzz")
-        profileImage.backgroundColor = .orange
+        profileImage.image = UIImage(named: "vaso")
         profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
-        profileImage.layer.cornerRadius = 48
+        profileImage.layer.cornerRadius = 46.5
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         return profileImage
+    }()
+    
+    private let addStoryIcon: UIImageView = {
+        let addStoryIcon = UIImageView()
+        addStoryIcon.image = UIImage(systemName: "plus.circle.fill")
+        addStoryIcon.contentMode = .scaleAspectFill
+        addStoryIcon.clipsToBounds = true
+        addStoryIcon.translatesAutoresizingMaskIntoConstraints = false
+        return addStoryIcon
     }()
     
     private let lockIcon: UIImageView = {
@@ -116,6 +129,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         editButton.layer.borderWidth = 1
         editButton.layer.borderColor = UIColor.systemGray4.cgColor
         editButton.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        editButton.isUserInteractionEnabled = true
         editButton.translatesAutoresizingMaskIntoConstraints = false
         return editButton
     }()
@@ -136,6 +150,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(profileDetailsView)
         contentView.addSubview(feedCollection)
+        configureEditButton()
         setupUI()
     }
     
@@ -158,6 +173,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         profileDetailsView.addSubview(editButton)
         profileDetailsView.addSubview(bioStackView)
         profileDetailsView.addSubview(lockIcon)
+        profileDetailsView.addSubview(addStoryIcon)
         
         NSLayoutConstraint.activate([
             profileDetailsView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -180,12 +196,39 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
             profileImage.widthAnchor.constraint(equalToConstant: 93),
             profileImage.heightAnchor.constraint(equalToConstant: 93),
             
+            addStoryIcon.bottomAnchor.constraint(equalTo: profileImageContainer.bottomAnchor, constant: -2),
+            addStoryIcon.rightAnchor.constraint(equalTo: profileImageContainer.rightAnchor, constant: -2),
+            addStoryIcon.widthAnchor.constraint(equalToConstant: 24),
+            addStoryIcon.heightAnchor.constraint(equalToConstant: 24),
+            
             editButton.topAnchor.constraint(equalTo: bioStackView.bottomAnchor, constant: 20),
             editButton.leftAnchor.constraint(equalTo: profileDetailsView.leftAnchor, constant: 16),
             editButton.rightAnchor.constraint(equalTo: profileDetailsView.rightAnchor, constant: -16),
             editButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
+    
+    
+    func configureEditButton() {
+        editButton.addAction(UIAction(handler: { [weak self] action in
+            self?.editButtonPressed()
+        }), for: .touchUpInside)
+    }
+    
+    @objc private func editButtonPressed() {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.editButton.backgroundColor = UIColor.systemGray4.withAlphaComponent(0.5)
+        }) { _ in
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.1) {
+                    self.editButton.backgroundColor = .clear
+                }
+            }
+        }
+        //Action
+        delegate?.didPressEditButton()
+    }
+    
     
     private func setupFollowersStackView() {
         let postsStack = createInfoStack(number: "54", label: "Posts")
@@ -277,9 +320,9 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 2) / 3
         return CGSize(width: width, height: 138)
-      }
+    }
 }
