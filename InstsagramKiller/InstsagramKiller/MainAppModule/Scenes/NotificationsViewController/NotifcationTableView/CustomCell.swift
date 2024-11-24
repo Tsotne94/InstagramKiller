@@ -30,7 +30,7 @@ class CustomCell: UITableViewCell {
         messageLabel.numberOfLines = 2
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        timestampLabel.font = UIFont(name: IGFonts.sfRegullar.rawValue, size: 13)
+        timestampLabel.font = UIFont.systemFont(ofSize: 13)
         timestampLabel.textColor = UIColor(named: TextColors.washedText.rawValue)
         timestampLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -46,7 +46,7 @@ class CustomCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            profileImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            profileImageView.centerYAnchor.constraint(equalTo: messageLabel.centerYAnchor),
             profileImageView.widthAnchor.constraint(equalToConstant: 40),
             profileImageView.heightAnchor.constraint(equalToConstant: 40),
             
