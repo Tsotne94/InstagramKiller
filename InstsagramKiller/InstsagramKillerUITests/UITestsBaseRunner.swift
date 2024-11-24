@@ -13,7 +13,6 @@ class UITestsBaseRunner: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         
-        app.terminate()
         app = XCUIApplication()
         app.launchArguments = ["UI-Testing"]
         app.launch()
