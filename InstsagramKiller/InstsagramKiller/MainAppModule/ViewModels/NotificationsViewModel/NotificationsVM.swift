@@ -51,12 +51,14 @@ class NotificationsVM {
     
     private func transformJSONItems(_ items: [NotificationJSONItem]) -> [NotificationItem] {
         return items.map { jsonItem in
-            NotificationItem(
+            let followed = jsonItem.action.lowercased().contains("started following you")
+            return NotificationItem(
                 profileImage: jsonItem.profile_picture,
                 username: jsonItem.usernames.joined(separator: ", "),
                 action: jsonItem.action,
                 timestamp: jsonItem.time_ago,
-                postImage: nil
+                postImage: nil,
+                followed: followed
             )
         }
     }

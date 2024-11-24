@@ -16,6 +16,7 @@ struct NotificationItem: Codable{
     let action: String
     let timestamp: String
     let postImage: String?
+    let followed: Bool
 }
 
 struct RootResponse: Codable {
