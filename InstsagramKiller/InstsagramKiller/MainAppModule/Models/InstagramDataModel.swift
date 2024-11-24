@@ -48,6 +48,25 @@ struct Counts: Codable {
     let following: Int?
 }
 
+struct CategorizedResponse: Codable {
+    let data: CategorizedData?
+    let meta: Meta?
+}
+
+struct CategorizedData: Codable {
+    let new: [CategorizedPost]?
+    let today: [CategorizedPost]?
+    let this_week: [CategorizedPost]?
+    let this_month: [CategorizedPost]?
+}
+
+struct CategorizedPost: Codable {
+    let action: String?
+    let profile_picture: String?
+    let usernames: [String]?
+    let time_ago: String?
+}
+
 struct Meta: Codable {
     let code: Int?
 }
