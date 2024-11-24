@@ -64,6 +64,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         let lockIcon = UIImageView()
         lockIcon.image = UIImage(named: "lockIcon")
         lockIcon.contentMode = .scaleAspectFill
+        lockIcon.tintColor = .background
         lockIcon.clipsToBounds = true
         lockIcon.translatesAutoresizingMaskIntoConstraints = false
         return lockIcon
@@ -139,7 +140,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         layout.scrollDirection = .vertical
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = .white
+        collection.backgroundColor = .background
         collection.isScrollEnabled = false
         return collection
     }()

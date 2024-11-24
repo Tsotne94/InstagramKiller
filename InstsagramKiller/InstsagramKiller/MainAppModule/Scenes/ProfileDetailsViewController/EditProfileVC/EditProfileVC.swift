@@ -181,7 +181,7 @@ class EditProfileVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         buttonConfigurations()
-        view.backgroundColor = .background
+        view.backgroundColor = .white
     }
     
     private func setupUI() {
