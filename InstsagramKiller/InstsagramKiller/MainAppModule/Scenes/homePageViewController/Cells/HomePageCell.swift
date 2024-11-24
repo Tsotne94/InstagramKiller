@@ -9,6 +9,7 @@ import UIKit
 
 class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     let cacheManager = ImageCacheManager.shared
+    let buttonsViewModel = InteractiveButtonsViewModel()
     
     static let identifier = "HomePageCell"
     
@@ -445,20 +446,19 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     @objc func shareButtonTapped() {
-        let text = "Check out this awesome content!"
-        let image = UIImage(named: "exampleImage")
-        
-        let items: [Any] = [text, image].compactMap { $0 }
-        
-        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        
-        activityViewController.excludedActivityTypes = [
-            .addToReadingList, .airDrop, .assignToContact, .postToFacebook, .postToTwitter
-        ]
-        
-        if let viewController = self.window?.rootViewController {
-            viewController.present(activityViewController, animated: true, completion: nil)
+        let image = getCurrentImage()
+        buttonsViewModel.shareButtonTapped(image: image, window: self.window)
+    }
+    
+    private func getCurrentImage() -> UIImage? {
+        if pageControl.currentPage == 0 {
+            return self.postImage.image
+        } else if pageControl.currentPage == 1 {
+            return self.postImageTwo.image
+        } else if pageControl.currentPage == 2 {
+            return self.postImageThree.image
         }
+        return nil
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -468,13 +468,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         
         imagePageCount.text = "\(page + 1)/3"
     }
-    
-    func favoriteIconTapped() {
-        
-    }
 }
-
-import Foundation
 
 extension String {
     var toDayMonthFormat: String? {
