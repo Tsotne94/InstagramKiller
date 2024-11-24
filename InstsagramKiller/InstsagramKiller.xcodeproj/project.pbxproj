@@ -40,7 +40,11 @@
 		1FEBC8EF2CF080B9000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKillerTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionView.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewCell.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewLayout.swift,
 				MainAppModule/Scenes/DiscoverPageViewController/DiscoverPageViewController.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
 				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
 				MainAppModule/Scenes/NotificationsViewController/NotificationsViewController.swift,
 				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsViewController.swift,
@@ -53,7 +57,11 @@
 		1FEBC8F02CF080B9000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKillerUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionView.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewCell.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewLayout.swift,
 				MainAppModule/Scenes/DiscoverPageViewController/DiscoverPageViewController.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
 				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
 				MainAppModule/Scenes/NotificationsViewController/NotificationsViewController.swift,
 				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsViewController.swift,
