@@ -18,7 +18,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     private let profileDetailsView: UIView = {
         let profileDetailsView = UIView()
-        profileDetailsView.backgroundColor = .clear
+        profileDetailsView.backgroundColor = .white
         profileDetailsView.translatesAutoresizingMaskIntoConstraints = false
         return profileDetailsView
     }()
@@ -26,7 +26,8 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     private let headerUsername: UILabel = {
         let headerUsername = UILabel()
         headerUsername.text = "jacob_w"
-        headerUsername.font = UIFont.boldSystemFont(ofSize: 18)
+        headerUsername.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 16)
+        headerUsername.textColor = .tesxt
         headerUsername.textAlignment = .center
         headerUsername.translatesAutoresizingMaskIntoConstraints = false
         return headerUsername
@@ -92,7 +93,8 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     private let usernameLabel: UILabel = {
         let usernameLabel = UILabel()
         usernameLabel.text = "Jacob West"
-        usernameLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        usernameLabel.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 12)
+        usernameLabel.textColor = .tesxt
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         return usernameLabel
     }()
@@ -101,7 +103,8 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         let label = UILabel()
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = UIFont(name: IGFonts.sfRegullar.rawValue, size: 12)
+        label.textColor = .tesxt
         label.numberOfLines = 0
         
         let bioString = "Digital goodies designer @pixsellz\nEverything is designed."
@@ -140,7 +143,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         layout.scrollDirection = .vertical
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = .background
+        collection.backgroundColor = .white
         collection.isScrollEnabled = false
         return collection
     }()
@@ -226,7 +229,6 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
                 }
             }
         }
-        //Action
         delegate?.didPressEditButton()
     }
     
@@ -241,7 +243,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         
         NSLayoutConstraint.activate([
             followersInfoStackView.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor),
-            followersInfoStackView.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 40)
+            followersInfoStackView.rightAnchor.constraint(equalTo: profileDetailsView.rightAnchor, constant: -10),
         ])
     }
     
@@ -278,11 +280,13 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         
         let numberLabel = UILabel()
         numberLabel.text = number
-        numberLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        numberLabel.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 16)
+        numberLabel.textColor = .tesxt
         
         let textLabel = UILabel()
         textLabel.text = label
-        textLabel.font = UIFont.systemFont(ofSize: 12)
+        textLabel.font = UIFont(name: IGFonts.sfRegullar.rawValue, size: 13)
+        textLabel.textColor = .tesxt
         
         stack.addArrangedSubview(numberLabel)
         stack.addArrangedSubview(textLabel)
@@ -293,7 +297,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     private func calculateHeight() -> CGFloat {
         let rows = ceil(CGFloat(imageArr.count) / 3.0)
         let itemHeight: CGFloat = 139
-        let verticalSpacing: CGFloat = 2
+        let verticalSpacing: CGFloat = 1
         let totalHeight = (rows * itemHeight) + ((rows - 1) * verticalSpacing)
         return totalHeight
     }

@@ -13,6 +13,7 @@ class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UIT
         tableView.register(ProfileDetailsCell.self, forCellReuseIdentifier: ProfileDetailsCell.identifier)
         tableView.register(FeedCollectionViewCell.self, forCellReuseIdentifier: FeedCollectionViewCell.identifier)
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -24,8 +25,8 @@ class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        setupTableView()
         view.backgroundColor = .white
+        setupTableView()
     }
     
     private func setupTableView() {
