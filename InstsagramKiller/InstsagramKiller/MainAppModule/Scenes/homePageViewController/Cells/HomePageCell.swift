@@ -8,6 +8,8 @@
 import UIKit
 
 class HomePageCell: UITableViewCell, UIScrollViewDelegate {
+    let cacheManager = ImageCacheManager.shared
+    
     static let identifier = "HomePageCell"
     
     private let profileIcon: UIImageView = {
@@ -57,6 +59,13 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         return imageView
     }()
     
+    private let postImageThree: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
     private let favouritesIcon: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(resource: .favouritesIcon), for: .normal)
@@ -90,14 +99,6 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         return imageView
     }()
     
-    private let commentTextLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: IGFonts.sfRegullar.rawValue, size: 13)
-        
-        return label
-    }()
-    
     private let commentUserName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -116,6 +117,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .gray
         
         return label
     }()
@@ -126,7 +128,6 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
-        scrollView.backgroundColor = .red
         
         return scrollView
     }()
@@ -134,25 +135,54 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.numberOfPages = 2
+        pageControl.numberOfPages = 3
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.currentPageIndicatorTintColor = UIColor(named: BackgroundColors.blueButton.rawValue)
         
         return pageControl
     }()
     
+    private let imagePageCount: PaddedLabel = {
+        let label = PaddedLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "1/3"
+        label.backgroundColor = .darkGray
+        label.textColor = .white
+        return label
+    }()
+    
     private let andOthersLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "And others"
-        
+        return label
+    }()
+    
+    private let likedByLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Liked by "
+
         return label
     }()
     
     private let likedByUsernameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "janedoe123"
+        label.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 13)
+        return label
+    }()
+    
+    private let likedByAnd: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = " and"
+        return label
+    }()
+    
+    private let likedByCount: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 13)
 
         return label
     }()
@@ -223,6 +253,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     
     private func setUpScrollView() {
         contentView.addSubview(scrollView)
+        contentView.addSubview(imagePageCount)
         scrollView.delegate = self
         
         NSLayoutConstraint.activate([
@@ -232,14 +263,20 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
             scrollView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
         ])
         
+        NSLayoutConstraint.activate([
+            imagePageCount.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            imagePageCount.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16)
+        ])
+        
             scrollView.layoutIfNeeded()
-            scrollView.contentSize = CGSize(width: scrollView.bounds.width * 2.6, height: scrollView.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * 3, height: scrollView.bounds.height)
 
     }
     
     private func setupFeedImage() {
         scrollView.addSubview(postImage)
         scrollView.addSubview(postImageTwo)
+        scrollView.addSubview(postImageThree)
         
         NSLayoutConstraint.activate([
             postImage.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -250,7 +287,12 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
             postImageTwo.topAnchor.constraint(equalTo: scrollView.topAnchor),
             postImageTwo.leftAnchor.constraint(equalTo: postImage.rightAnchor),
             postImageTwo.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-            postImageTwo.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            postImageTwo.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            postImageThree.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            postImageThree.leadingAnchor.constraint(equalTo: postImageTwo.trailingAnchor),
+            postImageThree.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            postImageThree.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
     
@@ -294,32 +336,37 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     private func setUpCommentTextLabel() {
-        contentView.addSubview(commentTextLabel)
+        contentView.addSubview(likedByLabel)
         contentView.addSubview(likedByUsernameLabel)
+        contentView.addSubview(likedByAnd)
+        contentView.addSubview(likedByCount)
         contentView.addSubview(andOthersLabel)
         
         NSLayoutConstraint.activate([
-            commentTextLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.trailingAnchor, constant: 5),
-            commentTextLabel.topAnchor.constraint(equalTo: favouritesIcon.bottomAnchor, constant: 15),
-            commentTextLabel.trailingAnchor.constraint(lessThanOrEqualTo: likedByUsernameLabel.leadingAnchor, constant: -5)
+            likedByLabel.leadingAnchor.constraint(equalTo: likedMiniProfileIcon.trailingAnchor, constant: 5),
+            likedByLabel.centerYAnchor.constraint(equalTo: likedMiniProfileIcon.centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            likedByUsernameLabel.leadingAnchor.constraint(equalTo: commentTextLabel.trailingAnchor, constant: 5),
-            likedByUsernameLabel.centerYAnchor.constraint(equalTo: commentTextLabel.centerYAnchor),
-            likedByUsernameLabel.trailingAnchor.constraint(lessThanOrEqualTo: andOthersLabel.leadingAnchor, constant: -5)
+            likedByUsernameLabel.leadingAnchor.constraint(equalTo: likedByLabel.trailingAnchor),
+            likedByUsernameLabel.centerYAnchor.constraint(equalTo: likedByLabel.centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            andOthersLabel.leadingAnchor.constraint(equalTo: likedByUsernameLabel.trailingAnchor, constant: 5),
-            andOthersLabel.centerYAnchor.constraint(equalTo: commentTextLabel.centerYAnchor),
+            likedByAnd.leadingAnchor.constraint(equalTo: likedByUsernameLabel.trailingAnchor),
+            likedByAnd.centerYAnchor.constraint(equalTo: likedByUsernameLabel.centerYAnchor)
         ])
         
-        commentTextLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        commentTextLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        NSLayoutConstraint.activate([
+            likedByCount.leadingAnchor.constraint(equalTo: likedByAnd.trailingAnchor),
+            likedByCount.centerYAnchor.constraint(equalTo: likedByAnd.centerYAnchor)
+        ])
         
-        likedByUsernameLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        likedByUsernameLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        likedByLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        likedByLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
+        likedByLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        likedByLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         andOthersLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         andOthersLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -356,25 +403,30 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         ])
     }
     
-    func configure(profileIcon: URL?, usernameLabel: String, userLocation: String, postImage: URL?, likedMiniProfileIcon: URL?,  commentTextLabel: String, userCommentLabel: String, dateLabel: String) {
-        
-        self.usernameLabel.text = usernameLabel
-        self.userLocation.text = userLocation
-        self.commentTextLabel.text = commentTextLabel
-        self.userCommentLabel.text = userCommentLabel
-        self.dateLabel.text = dateLabel
-        loadImage(from: profileIcon, into: self.profileIcon)
-        loadImage(from: postImage, into: self.postImage)
-        loadImage(from: likedMiniProfileIcon, into: self.likedMiniProfileIcon)
+    func configure(with post: Post) {
+        self.usernameLabel.text = post.user?.username
+        self.userLocation.text = post.location.name
+        self.likedByUsernameLabel.text = post.likes?.data.first?.full_name
+        self.likedByCount.text = " \(post.likes?.count ?? 0) others"
+        self.userCommentLabel.text = post.comments.data.first?.text
+        self.dateLabel.text = post.created_time?.toDayMonthFormat
+        loadImage(from: post.user?.profile_picture, into: self.profileIcon)
+        loadImage(from: post.images?.imageURLs.first ?? nil, into: self.postImage)
+        loadImage(from: post.images?.imageURLs[1], into: self.postImageTwo)
+        loadImage(from: post.images?.imageURLs[2], into: self.postImageThree)
+        loadImage(from: post.likes?.data.first?.profile_picture, into: self.likedMiniProfileIcon)
     }
     
-    func loadImage(from url: URL?, into imageView: UIImageView) {
-        guard let url else { return }
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    func loadImage(from stringUrl: String?, into imageView: UIImageView) {
+        guard !checkIfCached(on: stringUrl, into: imageView) else { return }
+        guard let stringURL = stringUrl, let url = URL(string: stringURL) else { return }
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let data = data, error == nil {
+                let image = UIImage(data: data)
                 DispatchQueue.main.async {
-                    imageView.image = UIImage(data: data)
+                    imageView.image = image
                 }
+                self?.cacheManager.cacheImage(image, for: stringUrl)
             } else {
                 DispatchQueue.main.async {
                     imageView.image = UIImage(named: "defaultImage")
@@ -382,6 +434,14 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
             }
         }
         task.resume()
+    }
+    
+    func checkIfCached(on url: String?, into imageView: UIImageView) -> Bool {
+        guard let url, let image = cacheManager.getImage(for: url) else { return false }
+        DispatchQueue.main.async {
+            imageView.image = image
+        }
+        return true
     }
     
     @objc func shareButtonTapped() {
@@ -405,22 +465,47 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         let pageWidth = scrollView.frame.width
         let page = Int(round(scrollView.contentOffset.x / pageWidth))
         pageControl.currentPage = page
+        
+        imagePageCount.text = "\(page + 1)/3"
     }
     
     func favoriteIconTapped() {
         
     }
-
-//    func configureLikedBy(with like: Likes, othersCount: Int) {
-//        commentUserName.text = "Liked by"
-//        likedByUsernameLabel.text = like.username
-//        andOthersLabel.text = "and \(othersCount) others"
-//
-//        if let url = URL(string: like.profilePictureURL) {
-//            loadImage(from: url, into: profileIcon)
-//        } else {
-//            profileIcon.image = UIImage(named: "defaultImage")
-//        }
-//    }
 }
 
+import Foundation
+
+extension String {
+    var toDayMonthFormat: String? {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        if let date = inputDateFormatter.date(from: self) {
+            let outputDateFormatter = DateFormatter()
+            outputDateFormatter.dateFormat = "d MMMM"
+            
+            return outputDateFormatter.string(from: date)
+        }
+        return nil
+    }
+}
+
+class PaddedLabel: UILabel {
+    
+    var padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    
+    override func drawText(in rect: CGRect) {
+        let paddedRect = rect.inset(by: padding)
+        layer.cornerRadius = 16
+        clipsToBounds = true
+        super.drawText(in: paddedRect)
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        let width = size.width + padding.left + padding.right
+        let height = size.height + padding.top + padding.bottom
+        return CGSize(width: width, height: height)
+    }
+}
