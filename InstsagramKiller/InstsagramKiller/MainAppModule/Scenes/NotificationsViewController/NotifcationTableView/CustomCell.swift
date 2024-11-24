@@ -9,7 +9,6 @@ import UIKit
 class CustomCell: UITableViewCell {
     private let profileImageView = UIImageView()
     private let messageLabel = UILabel()
-    private let timestampLabel = UILabel()
     private let postImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,12 +26,8 @@ class CustomCell: UITableViewCell {
         profileImageView.clipsToBounds = true
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        messageLabel.numberOfLines = 2
+        messageLabel.numberOfLines = 0
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        timestampLabel.font = UIFont.systemFont(ofSize: 13)
-        timestampLabel.textColor = UIColor(named: TextColors.washedText.rawValue)
-        timestampLabel.translatesAutoresizingMaskIntoConstraints = false
         
         postImageView.contentMode = .scaleAspectFill
         postImageView.layer.cornerRadius = 8
@@ -41,22 +36,19 @@ class CustomCell: UITableViewCell {
         
         contentView.addSubview(profileImageView)
         contentView.addSubview(messageLabel)
-        contentView.addSubview(timestampLabel)
         contentView.addSubview(postImageView)
         
         NSLayoutConstraint.activate([
             profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            profileImageView.centerYAnchor.constraint(equalTo: messageLabel.centerYAnchor),
             profileImageView.widthAnchor.constraint(equalToConstant: 40),
             profileImageView.heightAnchor.constraint(equalToConstant: 40),
             
             messageLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10),
             messageLabel.trailingAnchor.constraint(equalTo: postImageView.leadingAnchor, constant: -10),
-            messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            messageLabel.heightAnchor.constraint(equalToConstant: 50),
+            messageLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
             
-            timestampLabel.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor),
-            timestampLabel.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 5),
-            timestampLabel.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor),
+           
             
             postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             postImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -67,10 +59,10 @@ class CustomCell: UITableViewCell {
     
     func configure(with item: NotificationItem) {
         if let url = URL(string: item.profileImage) {
-              loadImage(from: url)
-          } else {
-              profileImageView.image = UIImage(named: "defaultProfileImage")
-          }
+            loadImage(from: url)
+        } else {
+            profileImageView.image = UIImage(named: "defaultProfileImage")
+        }
         let boldUsername = NSAttributedString(
             string: item.username,
             attributes: [.font: UIFont.boldSystemFont(ofSize: 13) ]
@@ -79,13 +71,20 @@ class CustomCell: UITableViewCell {
             string: " \(item.action)",
             attributes: [.font: UIFont.systemFont(ofSize: 13) ]
         )
+        let regularTimestamp = NSAttributedString(
+            string: " \n \(item.timestamp)",
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 13),
+                .foregroundColor: UIColor.gray
+            ]
+        )
         
         let attributedText = NSMutableAttributedString()
         attributedText.append(boldUsername)
         attributedText.append(regularAction)
+        attributedText.append(regularTimestamp)
         
         messageLabel.attributedText = attributedText
-        timestampLabel.text = item.timestamp
         
         if let postImage = item.postImage {
             postImageView.image = UIImage(named: postImage)
