@@ -93,4 +93,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return 40
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            header.textLabel?.textColor = .black
+        }
+    }
 }
