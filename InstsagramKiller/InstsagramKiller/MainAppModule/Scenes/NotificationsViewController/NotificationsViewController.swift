@@ -60,8 +60,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     private func bindViewModel() {
-        viewModel.fetchNotifications()
-        tableView.reloadData()
+        viewModel.fetchNotifications { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
