@@ -48,4 +48,16 @@ class NotificationsVM {
         
         task.resume()
     }
+    
+    private func transformJSONItems(_ items: [NotificationJSONItem]) -> [NotificationItem] {
+        return items.map { jsonItem in
+            NotificationItem(
+                profileImage: jsonItem.profile_picture,
+                username: jsonItem.usernames.joined(separator: ", "),
+                action: jsonItem.action,
+                timestamp: jsonItem.time_ago,
+                postImage: nil
+            )
+        }
+    }
 }
