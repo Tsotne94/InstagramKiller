@@ -66,8 +66,11 @@ class CustomCell: UITableViewCell {
     }
     
     func configure(with item: NotificationItem) {
-        profileImageView.image = UIImage(named: item.profileImage)
-        
+        if let url = URL(string: item.profileImage) {
+              loadImage(from: url)
+          } else {
+              profileImageView.image = UIImage(named: "defaultProfileImage")
+          }
         let boldUsername = NSAttributedString(
             string: item.username,
             attributes: [.font: UIFont.boldSystemFont(ofSize: 13) ]
@@ -92,6 +95,23 @@ class CustomCell: UITableViewCell {
         }
     }
     
+    private func loadImage(from url: URL) {
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            if let error = error {
+                print("Error loading profile image: \(error)")
+                return
+            }
+            
+            guard let data = data, let image = UIImage(data: data) else {
+                print("Error: Unable to convert data to image.")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self?.profileImageView.image = image
+            }
+        }.resume()
+    }
 }
 
 
