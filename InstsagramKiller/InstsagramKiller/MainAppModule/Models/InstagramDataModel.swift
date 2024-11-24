@@ -42,6 +42,15 @@ struct Pagination: Codable {
     let next_url: String?
 }
 
+struct User: Codable {
+    let profile_picture: String?
+    let username: String?
+    let full_name: String?
+    let description: String?
+    let counts: Counts?
+    let photos: [String]?
+}
+
 struct Counts: Codable {
     let posts: Int?
     let followers: Int?
@@ -65,6 +74,20 @@ struct CategorizedPost: Codable {
     let profile_picture: String?
     let usernames: [String]?
     let time_ago: String?
+}
+
+struct UserInfoResponse: Codable {
+    let data: UserInfo?
+    let meta: Meta?
+}
+
+struct UserInfo: Codable {
+    let profile_picture: String?
+    let username: String?
+    let full_name: String?
+    let description: String?
+    let counts: Counts?
+    let photos: [String]?
 }
 
 struct Meta: Codable {
