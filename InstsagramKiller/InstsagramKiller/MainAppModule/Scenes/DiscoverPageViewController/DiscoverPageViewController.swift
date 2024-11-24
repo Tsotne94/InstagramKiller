@@ -7,7 +7,7 @@
 import UIKit
 
 class DiscoverPageViewController: UIViewController {
-    private var collectionView = DiscoverPageCollectionView()
+    private var collectionView = DiscoverPageCollectionView(frame: CGRect())
     private var searchBarView = DiscoverPageSearchBarView()
 
     override func viewDidLoad() {

@@ -62,16 +62,43 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
         if let image = UIImage(named: imageNames[indexPath.item]) {
             cell.setImage(image)
         }
-        
         return cell
     }
     
     // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let searchView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DiscoverPageSearchBarView.reuseIdentifier , for: indexPath) as! DiscoverPageSearchBarView
+        searchView.delegate = self
         return searchView
     }
 }
+
+extension DiscoverPageCollectionView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            print("Search text: \(searchText)")
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
