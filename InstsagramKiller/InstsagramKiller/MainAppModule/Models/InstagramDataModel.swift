@@ -16,9 +16,12 @@ struct Response: Codable {
 struct Post: Codable {
     let id: String?
     let caption: Caption?
+    let location: PostLocation
     let likes: Likes?
     let images: Images?
     let user: User?
+    let comments: CommentsResponse
+    let created_time: String?
 }
 
 struct Caption: Codable {
@@ -27,10 +30,21 @@ struct Caption: Codable {
 
 struct Likes: Codable {
     let count: Int?
+    let data: [User]
 }
 
 struct Images: Codable {
     let standard_resolution: Resolution?
+    let low_resolution: Resolution?
+    let thumbnail: Resolution?
+    
+    var imageURLs: [String?] {
+        return [
+            low_resolution?.url,
+            standard_resolution?.url,
+            thumbnail?.url
+        ]
+    }
 }
 
 struct Resolution: Codable {
@@ -75,6 +89,7 @@ struct Meta: Codable {
     let code: Int?
 }
 
+
 struct LikeNotification {
     let section: String
     let notifications: [NotificationItem]
@@ -106,4 +121,27 @@ struct NotificationSections: Codable {
     let today: [NotificationJSONItem]
     let this_week: [NotificationJSONItem]
     let this_month: [NotificationJSONItem]
+
+struct PostLocation: Codable {
+    let name: String
+}
+
+
+struct CommentsResponse: Codable {
+    let count: Int
+    let data: [Comment]
+}
+struct Comment: Codable {
+    var createdTime: String
+    var from: User
+    var id: String
+    var text: String
+
+    enum CodingKeys: String, CodingKey {
+        case createdTime = "created_time"
+        case from
+        case id
+        case text
+    }
+
 }
