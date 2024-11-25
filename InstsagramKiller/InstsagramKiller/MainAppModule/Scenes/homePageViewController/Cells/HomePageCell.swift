@@ -10,7 +10,9 @@ import UIKit
 class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     let cacheManager = ImageCacheManager.shared
     let buttonsViewModel = InteractiveButtonsViewModel()
+    let homePageViewModel = HomePageViewModel()
     
+    private var post: Post?
     static let identifier = "HomePageCell"
     
     private let profileIcon: UIImageView = {
@@ -299,6 +301,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     
     private func setUpFavouritesIcon() {
         contentView.addSubview(favouritesIcon)
+        favouritesIcon.addTarget(self, action: #selector(favoritesButtonTapped), for: .touchUpInside)
         NSLayoutConstraint.activate([
             favouritesIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
             favouritesIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
@@ -404,7 +407,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         ])
     }
     
-    func configure(with post: Post) {
+    func configure(with post: Post, at index: Int) {
         self.usernameLabel.text = post.user?.username
         self.userLocation.text = post.location.name
         self.likedByUsernameLabel.text = post.likes?.data.first?.full_name
@@ -416,6 +419,8 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         loadImage(from: post.images?.imageURLs[1], into: self.postImageTwo)
         loadImage(from: post.images?.imageURLs[2], into: self.postImageThree)
         loadImage(from: post.likes?.data.first?.profile_picture, into: self.likedMiniProfileIcon)
+        
+        favouritesIcon.tag = index
     }
     
     func loadImage(from stringUrl: String?, into imageView: UIImageView) {
@@ -448,6 +453,11 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     @objc func shareButtonTapped() {
         let image = getCurrentImage()
         buttonsViewModel.shareButtonTapped(image: image, window: self.window)
+    }
+    
+    @objc func favoritesButtonTapped(_ sender: UIButton) {
+        let itemID = sender.tag
+        buttonsViewModel.toggleLike(for: itemID, button: sender)
     }
     
     private func getCurrentImage() -> UIImage? {

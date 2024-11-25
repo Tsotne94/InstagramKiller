@@ -1,0 +1,631 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E3842582CF32E5A000DA670 /* NetworkPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 2E3842572CF32E5A000DA670 /* NetworkPackage */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1FEBC8CD2CF075DE000D6953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FEBC8AE2CF075DB000D6953 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FEBC8B52CF075DB000D6953;
+			remoteInfo = InstsagramKiller;
+		};
+		1FEBC8D72CF075DE000D6953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FEBC8AE2CF075DB000D6953 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FEBC8B52CF075DB000D6953;
+			remoteInfo = InstsagramKiller;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1FEBC8B62CF075DB000D6953 /* InstsagramKiller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstsagramKiller.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FEBC8CC2CF075DE000D6953 /* InstsagramKillerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstsagramKillerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FEBC8D62CF075DE000D6953 /* InstsagramKillerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstsagramKillerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1FEBC8DE2CF075DE000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKiller" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1FEBC8B52CF075DB000D6953 /* InstsagramKiller */;
+		};
+		1FEBC8EF2CF080B9000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKillerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionView.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewCell.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewLayout.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/DiscoverPageViewController.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
+<<<<<<< HEAD
+				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
+=======
+>>>>>>> eab164f932db743fa63d893116ee6eb9da8c9d99
+				"Resources/Fonts/SF-Pro-Text-Regular.otf",
+				"Resources/Fonts/SF-Pro-Text-Semibold.otf",
+			);
+			target = 1FEBC8CB2CF075DE000D6953 /* InstsagramKillerTests */;
+		};
+		1FEBC8F02CF080B9000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKillerUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Resources/Fonts/SF-Pro-Text-Regular.otf",
+				"Resources/Fonts/SF-Pro-Text-Semibold.otf",
+			);
+			target = 1FEBC8D52CF075DE000D6953 /* InstsagramKillerUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1FEBC8B82CF075DB000D6953 /* InstsagramKiller */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1FEBC8DE2CF075DE000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKiller" target */,
+				1FEBC8EF2CF080B9000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKillerTests" target */,
+				1FEBC8F02CF080B9000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKillerUITests" target */,
+			);
+			path = InstsagramKiller;
+			sourceTree = "<group>";
+		};
+		1FEBC8CF2CF075DE000D6953 /* InstsagramKillerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = InstsagramKillerTests;
+			sourceTree = "<group>";
+		};
+		1FEBC8D92CF075DE000D6953 /* InstsagramKillerUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = InstsagramKillerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1FEBC8B32CF075DB000D6953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E3842582CF32E5A000DA670 /* NetworkPackage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FEBC8C92CF075DE000D6953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FEBC8D32CF075DE000D6953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FEBC8AD2CF075DB000D6953 = {
+			isa = PBXGroup;
+			children = (
+				1FEBC8B82CF075DB000D6953 /* InstsagramKiller */,
+				1FEBC8CF2CF075DE000D6953 /* InstsagramKillerTests */,
+				1FEBC8D92CF075DE000D6953 /* InstsagramKillerUITests */,
+				1FEBC8B72CF075DB000D6953 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1FEBC8B72CF075DB000D6953 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FEBC8B62CF075DB000D6953 /* InstsagramKiller.app */,
+				1FEBC8CC2CF075DE000D6953 /* InstsagramKillerTests.xctest */,
+				1FEBC8D62CF075DE000D6953 /* InstsagramKillerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1FEBC8B52CF075DB000D6953 /* InstsagramKiller */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FEBC8DF2CF075DE000D6953 /* Build configuration list for PBXNativeTarget "InstsagramKiller" */;
+			buildPhases = (
+				1FEBC8B22CF075DB000D6953 /* Sources */,
+				1FEBC8B32CF075DB000D6953 /* Frameworks */,
+				1FEBC8B42CF075DB000D6953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1FEBC8B82CF075DB000D6953 /* InstsagramKiller */,
+			);
+			name = InstsagramKiller;
+			packageProductDependencies = (
+				2E3842572CF32E5A000DA670 /* NetworkPackage */,
+			);
+			productName = InstsagramKiller;
+			productReference = 1FEBC8B62CF075DB000D6953 /* InstsagramKiller.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1FEBC8CB2CF075DE000D6953 /* InstsagramKillerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FEBC8E42CF075DE000D6953 /* Build configuration list for PBXNativeTarget "InstsagramKillerTests" */;
+			buildPhases = (
+				1FEBC8C82CF075DE000D6953 /* Sources */,
+				1FEBC8C92CF075DE000D6953 /* Frameworks */,
+				1FEBC8CA2CF075DE000D6953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FEBC8CE2CF075DE000D6953 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1FEBC8CF2CF075DE000D6953 /* InstsagramKillerTests */,
+			);
+			name = InstsagramKillerTests;
+			packageProductDependencies = (
+			);
+			productName = InstsagramKillerTests;
+			productReference = 1FEBC8CC2CF075DE000D6953 /* InstsagramKillerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1FEBC8D52CF075DE000D6953 /* InstsagramKillerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FEBC8E72CF075DE000D6953 /* Build configuration list for PBXNativeTarget "InstsagramKillerUITests" */;
+			buildPhases = (
+				1FEBC8D22CF075DE000D6953 /* Sources */,
+				1FEBC8D32CF075DE000D6953 /* Frameworks */,
+				1FEBC8D42CF075DE000D6953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FEBC8D82CF075DE000D6953 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1FEBC8D92CF075DE000D6953 /* InstsagramKillerUITests */,
+			);
+			name = InstsagramKillerUITests;
+			packageProductDependencies = (
+			);
+			productName = InstsagramKillerUITests;
+			productReference = 1FEBC8D62CF075DE000D6953 /* InstsagramKillerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1FEBC8AE2CF075DB000D6953 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					1FEBC8B52CF075DB000D6953 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					1FEBC8CB2CF075DE000D6953 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 1FEBC8B52CF075DB000D6953;
+					};
+					1FEBC8D52CF075DE000D6953 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 1FEBC8B52CF075DB000D6953;
+					};
+				};
+			};
+			buildConfigurationList = 1FEBC8B12CF075DB000D6953 /* Build configuration list for PBXProject "InstsagramKiller" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1FEBC8AD2CF075DB000D6953;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2E3842562CF32E5A000DA670 /* XCRemoteSwiftPackageReference "NetworkPackage" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1FEBC8B72CF075DB000D6953 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1FEBC8B52CF075DB000D6953 /* InstsagramKiller */,
+				1FEBC8CB2CF075DE000D6953 /* InstsagramKillerTests */,
+				1FEBC8D52CF075DE000D6953 /* InstsagramKillerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1FEBC8B42CF075DB000D6953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FEBC8CA2CF075DE000D6953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FEBC8D42CF075DE000D6953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1FEBC8B22CF075DB000D6953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FEBC8C82CF075DE000D6953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FEBC8D22CF075DE000D6953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1FEBC8CE2CF075DE000D6953 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FEBC8B52CF075DB000D6953 /* InstsagramKiller */;
+			targetProxy = 1FEBC8CD2CF075DE000D6953 /* PBXContainerItemProxy */;
+		};
+		1FEBC8D82CF075DE000D6953 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FEBC8B52CF075DB000D6953 /* InstsagramKiller */;
+			targetProxy = 1FEBC8D72CF075DE000D6953 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1FEBC8E02CF075DE000D6953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77KXDW4YRP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InstsagramKiller/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKiller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1FEBC8E12CF075DE000D6953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77KXDW4YRP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InstsagramKiller/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKiller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1FEBC8E22CF075DE000D6953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1FEBC8E32CF075DE000D6953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1FEBC8E52CF075DE000D6953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6769JBWNT9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InstsagramKiller.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InstsagramKiller";
+			};
+			name = Debug;
+		};
+		1FEBC8E62CF075DE000D6953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6769JBWNT9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InstsagramKiller.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InstsagramKiller";
+			};
+			name = Release;
+		};
+		1FEBC8E82CF075DE000D6953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6769JBWNT9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = InstsagramKiller;
+			};
+			name = Debug;
+		};
+		1FEBC8E92CF075DE000D6953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6769JBWNT9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = InstsagramKiller;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FEBC8B12CF075DB000D6953 /* Build configuration list for PBXProject "InstsagramKiller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FEBC8E22CF075DE000D6953 /* Debug */,
+				1FEBC8E32CF075DE000D6953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FEBC8DF2CF075DE000D6953 /* Build configuration list for PBXNativeTarget "InstsagramKiller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FEBC8E02CF075DE000D6953 /* Debug */,
+				1FEBC8E12CF075DE000D6953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FEBC8E42CF075DE000D6953 /* Build configuration list for PBXNativeTarget "InstsagramKillerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FEBC8E52CF075DE000D6953 /* Debug */,
+				1FEBC8E62CF075DE000D6953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FEBC8E72CF075DE000D6953 /* Build configuration list for PBXNativeTarget "InstsagramKillerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FEBC8E82CF075DE000D6953 /* Debug */,
+				1FEBC8E92CF075DE000D6953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2E3842562CF32E5A000DA670 /* XCRemoteSwiftPackageReference "NetworkPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sandromaraneli/NetworkPackage.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2E3842572CF32E5A000DA670 /* NetworkPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E3842562CF32E5A000DA670 /* XCRemoteSwiftPackageReference "NetworkPackage" */;
+			productName = NetworkPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1FEBC8AE2CF075DB000D6953 /* Project object */;
+}
