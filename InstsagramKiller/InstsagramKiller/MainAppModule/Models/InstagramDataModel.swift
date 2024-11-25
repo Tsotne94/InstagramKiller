@@ -121,27 +121,28 @@ struct NotificationSections: Codable {
     let today: [NotificationJSONItem]
     let this_week: [NotificationJSONItem]
     let this_month: [NotificationJSONItem]
-
-struct PostLocation: Codable {
-    let name: String
 }
-
-
-struct CommentsResponse: Codable {
-    let count: Int
-    let data: [Comment]
-}
-struct Comment: Codable {
-    var createdTime: String
-    var from: User
-    var id: String
-    var text: String
-
-    enum CodingKeys: String, CodingKey {
-        case createdTime = "created_time"
-        case from
-        case id
-        case text
+    struct PostLocation: Codable {
+        let name: String
+    }
+    
+    
+    struct CommentsResponse: Codable {
+        let count: Int
+        let data: [Comment]
+    }
+    struct Comment: Codable {
+        var createdTime: String
+        var from: User
+        var id: String
+        var text: String
+        
+        enum CodingKeys: String, CodingKey {
+            case createdTime = "created_time"
+            case from
+            case id
+            case text
+        }
+        
     }
 
-}
