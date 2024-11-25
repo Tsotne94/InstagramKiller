@@ -8,7 +8,7 @@ import UIKit
 
 class DiscoverPageViewController: UIViewController {
     private var collectionView = DiscoverPageCollectionView(frame: CGRect())
-    private var searchBarView = DiscoverPageSearchBarView()
+    private let viewModel = DiscoverPageViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,19 +18,7 @@ class DiscoverPageViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = UIColor(named: BackgroundColors.accent.rawValue)
-        setupSearchBarView()
         setupCollectionView()
-    }
-    
-    private func setupSearchBarView() {
-        view.addSubview(searchBarView)
-        searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            searchBarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchBarView.heightAnchor.constraint(equalToConstant: 45)
-        ])
     }
     
     // MARK: - Setup Collection View
@@ -39,12 +27,10 @@ class DiscoverPageViewController: UIViewController {
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
-
-

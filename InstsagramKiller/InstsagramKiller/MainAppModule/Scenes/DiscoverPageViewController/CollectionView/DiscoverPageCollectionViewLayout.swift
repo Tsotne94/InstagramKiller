@@ -34,6 +34,14 @@ class DiscoverPageCollectionViewLayout: UICollectionViewCompositionalLayout {
         )
         
         let section = NSCollectionLayoutSection(group: finalGroup)
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        section.boundarySupplementaryItems = [header]
         return section
     }
     
