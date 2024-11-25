@@ -15,7 +15,8 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     static let identifier = "ProfileDetailsCell"
     weak var delegate: ProfileDetailsCellDelegate?
-    var imageArr: [UIImage] = []
+    let userViewModel = UserViewModel()
+    var imageArr: [UIImage] = (1...12).compactMap { _ in UIImage(named: "placeholder") }
     
     private let profileDetailsView: UIView = {
         let profileDetailsView = UIView()
@@ -42,7 +43,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         return profileImageContainer
     }()
     
-    private let profileImage: UIImageView = {
+    let profileImage: UIImageView = {
         let profileImage = UIImageView()
         profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
@@ -256,48 +257,16 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         ])
     }
     
-    private func createInfoStack(number: String, label: String) -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.spacing = 4
-        
-        let numberLabel = UILabel()
-        numberLabel.text = number
-        numberLabel.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 16)
-        numberLabel.textColor = .tesxt
-        
-        let textLabel = UILabel()
-        textLabel.text = label
-        textLabel.font = UIFont(name: IGFonts.sfRegullar.rawValue, size: 13)
-        textLabel.textColor = .tesxt
-        
-        stack.addArrangedSubview(numberLabel)
-        stack.addArrangedSubview(textLabel)
-        
-        return stack
-    }
-    
-    private func calculateHeight() -> CGFloat {
-        let rows = ceil(CGFloat(imageArr.count) / 3.0)
-        let itemHeight: CGFloat = 139
-        let verticalSpacing: CGFloat = 1
-        let totalHeight = (rows * itemHeight) + ((rows - 1) * verticalSpacing)
-        return totalHeight
-    }
-    
-    //var imageArr: [UIImage] = (1...13).compactMap { UIImage(named: "image\($0)") }
-    
     func configure(with user: UserModel) {
-        let postsStack = createInfoStack(number: "\(imageArr.count)", label: "Posts")
-        let followersStack = createInfoStack(number: "\(user.counts.followers)", label: "Followers")
-        let followingsStack = createInfoStack(number: "\(user.counts.following)", label: "Following")
+        let postsStack = userViewModel.createInfoStack(number: "\(imageArr.count)", label: "Posts")
+        let followersStack = userViewModel.createInfoStack(number: "\(user.counts.followers)", label: "Followers")
+        let followingsStack = userViewModel.createInfoStack(number: "\(user.counts.following)", label: "Following")
         followersInfoStackView.addArrangedSubview(postsStack)
         followersInfoStackView.addArrangedSubview(followersStack)
         followersInfoStackView.addArrangedSubview(followingsStack)
-        loadProfileImage(from: user.profilePicture, into: profileImage)
-        
-        loadFeedImages(from: user.photos) { images in
+        profileImage.image = UIImage(named: "goat")
+    
+        userViewModel.loadFeedImages(from: user.photos) { images in
             self.imageArr = images
             self.feedCollection.reloadData()
             self.feedCollection.layoutIfNeeded()
@@ -309,35 +278,12 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
         feedCollection.reloadData()
     }
     
-    func loadFeedImages(from urls: [URL], completion: @escaping ([UIImage]) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            var images = [UIImage]()
-            
-            for url in urls {
-                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                    images.append(image)
-                } else {
-                    images.append(UIImage(named: "...")!)
-                }
-            }
-            DispatchQueue.main.async {
-                completion(images)
-            }
-        }
-    }
-    
-    func loadProfileImage(from url: URL, into imageView: UIImageView) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    imageView.image = image
-                }
-            } else {
-                DispatchQueue.main.async {
-                    imageView.image = UIImage(named: "...")
-                }
-            }
-        }
+    private func calculateHeight() -> CGFloat {
+        let rows = ceil(CGFloat(imageArr.count) / 3.0)
+        let itemHeight: CGFloat = 139
+        let verticalSpacing: CGFloat = 1
+        let totalHeight = (rows * itemHeight) + ((rows - 1) * verticalSpacing)
+        return totalHeight
     }
     
     // MARK: - Collection View DataSource Methods
@@ -348,11 +294,13 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        
         let imageView = UIImageView(image: imageArr[indexPath.item])
         cell.contentView.addSubview(imageView)
         imageView.frame = cell.bounds
         return cell
     }
+    
     
     // MARK: - Collection View FlowLayout Delegate Methods
     
