@@ -407,7 +407,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         ])
     }
     
-    func configure(with post: Post) {
+    func configure(with post: Post, at index: Int) {
         self.usernameLabel.text = post.user?.username
         self.userLocation.text = post.location.name
         self.likedByUsernameLabel.text = post.likes?.data.first?.full_name
@@ -419,6 +419,8 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         loadImage(from: post.images?.imageURLs[1], into: self.postImageTwo)
         loadImage(from: post.images?.imageURLs[2], into: self.postImageThree)
         loadImage(from: post.likes?.data.first?.profile_picture, into: self.likedMiniProfileIcon)
+        
+        favouritesIcon.tag = index
     }
     
     func loadImage(from stringUrl: String?, into imageView: UIImageView) {
@@ -452,28 +454,10 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
         let image = getCurrentImage()
         buttonsViewModel.shareButtonTapped(image: image, window: self.window)
     }
-
-    @objc func favoritesButtonTapped() {
-        guard let mediaID = post?.id else {
-            print("Media ID: \(String(describing: post?.id))")
-            return
-        }
-        
-        let isCurrentlyLiked = favouritesIcon.image(for: .normal) == UIImage(named: Icons.favouritesHighlighted.rawValue)
-        let toggledImageName = isCurrentlyLiked ? Icons.favourites.rawValue : Icons.favouritesHighlighted.rawValue
-        favouritesIcon.setImage(UIImage(named: toggledImageName), for: .normal)
-
-        homePageViewModel.likePost(mediaID: mediaID) { [weak self] success in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                
-                if !success {
-                    let revertImageName = isCurrentlyLiked ? Icons.favouritesHighlighted.rawValue : Icons.favourites.rawValue
-                    self.favouritesIcon.setImage(UIImage(named: revertImageName), for: .normal)
-                    print("Failed to update like status.")
-                }
-            }
-        }
+    
+    @objc func favoritesButtonTapped(_ sender: UIButton) {
+        let itemID = sender.tag
+        buttonsViewModel.toggleLike(for: itemID, button: sender)
     }
     
     private func getCurrentImage() -> UIImage? {

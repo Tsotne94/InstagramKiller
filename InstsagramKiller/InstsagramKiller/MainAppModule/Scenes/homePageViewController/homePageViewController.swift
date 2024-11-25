@@ -66,7 +66,7 @@ class homePageViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = viewModel.posts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: HomePageCell.identifier, for: indexPath) as! HomePageCell
-        cell.configure(with: model)
+        cell.configure(with: model, at: indexPath.row)
         return cell
     }
 }
