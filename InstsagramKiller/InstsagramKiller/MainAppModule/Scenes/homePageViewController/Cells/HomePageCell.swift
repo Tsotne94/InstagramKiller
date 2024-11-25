@@ -10,7 +10,9 @@ import UIKit
 class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     let cacheManager = ImageCacheManager.shared
     let buttonsViewModel = InteractiveButtonsViewModel()
+    let homePageViewModel = HomePageViewModel()
     
+    private var post: Post?
     static let identifier = "HomePageCell"
     
     private let profileIcon: UIImageView = {
@@ -299,6 +301,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     
     private func setUpFavouritesIcon() {
         contentView.addSubview(favouritesIcon)
+        favouritesIcon.addTarget(self, action: #selector(favoritesButtonTapped), for: .touchUpInside)
         NSLayoutConstraint.activate([
             favouritesIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 15),
             favouritesIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
@@ -448,6 +451,29 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     @objc func shareButtonTapped() {
         let image = getCurrentImage()
         buttonsViewModel.shareButtonTapped(image: image, window: self.window)
+    }
+
+    @objc func favoritesButtonTapped() {
+        guard let mediaID = post?.id else {
+            print("Media ID: \(String(describing: post?.id))")
+            return
+        }
+        
+        let isCurrentlyLiked = favouritesIcon.image(for: .normal) == UIImage(named: Icons.favouritesHighlighted.rawValue)
+        let toggledImageName = isCurrentlyLiked ? Icons.favourites.rawValue : Icons.favouritesHighlighted.rawValue
+        favouritesIcon.setImage(UIImage(named: toggledImageName), for: .normal)
+
+        homePageViewModel.likePost(mediaID: mediaID) { [weak self] success in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                if !success {
+                    let revertImageName = isCurrentlyLiked ? Icons.favouritesHighlighted.rawValue : Icons.favourites.rawValue
+                    self.favouritesIcon.setImage(UIImage(named: revertImageName), for: .normal)
+                    print("Failed to update like status.")
+                }
+            }
+        }
     }
     
     private func getCurrentImage() -> UIImage? {

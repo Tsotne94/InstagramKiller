@@ -8,6 +8,7 @@
 import UIKit
 
 final class InteractiveButtonsViewModel {
+    private let homePageViewModel = HomePageViewModel()
     
     func shareButtonTapped(image: UIImage?, window: UIWindow?) {
         guard let image else { return }

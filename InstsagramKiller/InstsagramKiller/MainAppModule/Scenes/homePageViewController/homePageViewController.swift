@@ -10,7 +10,7 @@ import Foundation
 
 class homePageViewController: UIViewController, UITableViewDataSource {
     
-    let viewModel = homePageViewModel()
+    let viewModel = HomePageViewModel()
     let tableView = UITableView()
     var header = UIImageView()
     
