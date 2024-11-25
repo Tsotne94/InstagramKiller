@@ -169,7 +169,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let likedByUsernameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 13)
+        label.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 17)
         return label
     }()
     
@@ -183,7 +183,7 @@ class HomePageCell: UITableViewCell, UIScrollViewDelegate {
     private let likedByCount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 13)
+        label.font = UIFont(name: IGFonts.sfSemiBold.rawValue, size: 17)
 
         return label
     }()
