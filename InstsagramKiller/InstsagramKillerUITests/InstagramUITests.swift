@@ -46,4 +46,45 @@ final class InstagramUITests: InstagramUIElements {
         
         XCTAssertTrue(searchFieldOnDiscoverTab.exists)
     }
+    
+    func testNotificationsTab() {
+        guard firstPostOnFeed.waitForExistence(timeout: 20) else {
+            XCTFail("Post on feed did not appear in time.")
+            return
+        }
+        notificationsTab.tap()
+        
+        XCTAssertTrue(notificationsTableView.exists)
+        XCTAssertTrue(newNotificationsStaticText.exists)
+        XCTAssertTrue(likedYourPhotoStaticText.exists)
+    }
+    
+    func testFollowingAndFollowersOnProfileTab() {
+        guard firstPostOnFeed.waitForExistence(timeout: 20) else {
+            XCTFail("Post on feed did not appear in time.")
+            return
+        }
+        profileDetailsTab.tap()
+        
+        XCTAssertTrue(followersStaticText.exists)
+        XCTAssertTrue(followingStaticText.exists)
+        XCTAssertTrue(postsStaticText.exists)
+    }
+    
+    func testEditProfileButtonOnProfileTab() {
+        guard firstPostOnFeed.waitForExistence(timeout: 20) else {
+            XCTFail("Post on feed did not appear in time.")
+            return
+        }
+        profileDetailsTab.tap()
+        editProfileButton.tap()
+        
+        XCTAssertTrue(editProfilePageTitle.exists)
+        XCTAssertTrue(changeProfilePhotoButton.exists)
+        XCTAssertTrue(nameTextField.exists)
+        XCTAssertTrue(nicknameTextField.exists)
+        XCTAssertTrue(pronounsTextField.exists)
+        XCTAssertTrue(bioStaticText.exists)
+        XCTAssertTrue(linksStaticText.exists)
+    }
 }

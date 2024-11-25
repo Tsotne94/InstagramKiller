@@ -57,6 +57,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         tableView.dataSource = self
         tableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
         tableView.separatorStyle = .none
+        
+        tableView.accessibilityIdentifier = "notificationsTableView"
     }
     
     private func bindViewModel() {
