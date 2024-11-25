@@ -81,17 +81,17 @@ class CustomCell: UITableViewCell {
         }
         let boldUsername = NSAttributedString(
             string: item.username,
-            attributes: [.font: UIFont.boldSystemFont(ofSize: 13) ]
+            attributes: [.font: UIFont(name: IGFonts.sfSemiBold.rawValue, size: 13) ?? .systemFont(ofSize: 13) ]
         )
         let regularAction = NSAttributedString(
             string: " \(item.action)",
-            attributes: [.font: UIFont.systemFont(ofSize: 13) ]
+            attributes: [.font: UIFont(name: IGFonts.sfRegullar.rawValue, size: 13) ?? .systemFont(ofSize: 13)]
         )
         let regularTimestamp = NSAttributedString(
             string: " \n \(item.timestamp)",
             attributes: [
-                .font: UIFont.systemFont(ofSize: 13),
-                .foregroundColor: UIColor.gray
+                .font: UIFont(name: IGFonts.sfRegullar.rawValue, size: 13) ?? .systemFont(ofSize: 13),
+                .foregroundColor: UIColor(named: TextColors.washedText.rawValue) ?? .systemGray2
             ]
         )
         
