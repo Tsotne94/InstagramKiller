@@ -43,9 +43,9 @@ class EditProfileVC: UIViewController {
         return cancelButton
     }()
     
-    private let profileImage: UIImageView =  {
+    var profileImage: UIImageView =  {
         let profileImage = UIImageView()
-        profileImage.image = UIImage(named: "vaso")
+        profileImage.image = UIImage(named: "goat")
         profileImage.clipsToBounds = true
         profileImage.contentMode = .scaleAspectFill
         profileImage.layer.cornerRadius = 50
@@ -317,9 +317,8 @@ class EditProfileVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    
     @objc private func cancelButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
-    
 }
+

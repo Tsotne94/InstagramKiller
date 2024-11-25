@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>InstsagramKillerUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1FEBC8B52CF075DB000D6953</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1FEBC8CB2CF075DE000D6953</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1FEBC8D52CF075DE000D6953</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
