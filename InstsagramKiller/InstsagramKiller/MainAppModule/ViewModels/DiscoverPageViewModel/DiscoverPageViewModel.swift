@@ -14,7 +14,6 @@ protocol ReloadAble: AnyObject {
 
 class DiscoverPageViewModel: NSObject {
     private var posts = [Post]()
-    private var filteredPosts = [Post]()
     private let networkManager = NetworkPackage()
     weak var reloadDelegate: ReloadAble?
     
@@ -29,7 +28,6 @@ class DiscoverPageViewModel: NSObject {
                 switch result {
                 case .success(let response):
                     self.posts = response.data ?? []
-                    self.filteredPosts = self.posts
                     self.reloadDelegate?.reload()
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -38,31 +36,31 @@ class DiscoverPageViewModel: NSObject {
         }
     }
     
-    private func filterPosts(by searchText: String) {
-        if searchText.isEmpty {
-            filteredPosts = posts
-        } else {
-            filteredPosts = posts.filter { post in
-                return post.user?.username?.lowercased().contains(searchText.lowercased()) ?? false
-            }
-        }
-        reloadDelegate?.reload()
-    }
+//    private func filterPosts(by searchText: String) {
+//        if searchText.isEmpty {
+//            filteredPosts = posts
+//        } else {
+//            filteredPosts = posts.filter { post in
+//                return post.user?.username?.lowercased().contains(searchText.lowercased()) ?? false
+//            }
+//        }
+//        reloadDelegate?.reload()
+//    }
     
     func getUrl(from index: Int) -> URL {
-        let imageUrlString = filteredPosts[index].images?.standard_resolution?.url
+        let imageUrlString = posts[index].images?.standard_resolution?.url
         let imageUrl = URL(string: imageUrlString ?? "")
         return imageUrl!
     }
     
     var postCount: Int {
-        filteredPosts.count
+        posts.count
     }
 }
 
 extension DiscoverPageViewModel: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterPosts(by: searchText)
+//        filterPosts(by: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
