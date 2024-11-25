@@ -8,6 +8,7 @@ import UIKit
 
 class DiscoverPageViewController: UIViewController {
     private var collectionView = DiscoverPageCollectionView(frame: CGRect())
+    private let viewModel = DiscoverPageViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,5 +34,3 @@ class DiscoverPageViewController: UIViewController {
         ])
     }
 }
-
-

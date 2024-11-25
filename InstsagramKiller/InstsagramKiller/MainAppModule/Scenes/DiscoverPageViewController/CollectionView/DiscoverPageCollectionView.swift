@@ -13,8 +13,6 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
     private let customLayout = DiscoverPageCollectionViewLayout()
     private let viewModel = DiscoverPageViewModel()
     
-    let imageNames = (1...21).map { "i\($0)" }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCollectionView()
@@ -55,15 +53,13 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imageNames.count
+        return viewModel.postCount
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverPageCollectionViewCell.reuseIdentifier, for: indexPath) as! DiscoverPageCollectionViewCell
-        
-        if let image = UIImage(named: imageNames[indexPath.item]) {
-            cell.setImage(image)
-        }
+        let url = viewModel.getUrl(from: indexPath.item)
+        cell.loadImage(from: url )
         return cell
     }
     
@@ -72,6 +68,12 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
         let searchView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DiscoverPageSearchBarView.reuseIdentifier , for: indexPath) as! DiscoverPageSearchBarView
         searchView.setDelegate(viewModel)
         return searchView
+    }
+}
+
+extension DiscoverPageCollectionView: ReloadAble {
+    func reload() {
+        collectionView.reloadData()
     }
 }
 
