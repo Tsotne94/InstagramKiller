@@ -13,24 +13,25 @@ class TabController: UITabBarController {
     }
     
     private func setupTabs() {
-        let home = createTab(iconActive: Icons.homePageHighlighted.rawValue, iconInactive: Icons.homePage.rawValue, vc: homePageViewController())
-        let discover = createTab(iconActive: Icons.searchHighlighted.rawValue , iconInactive: Icons.search.rawValue, vc: DiscoverPageViewController())
-        let addContent = createTab(iconActive: Icons.addContent.rawValue , iconInactive: Icons.addContent.rawValue, vc: UIViewController())
-        let notifications = createTab(iconActive: Icons.favouritesHighlighted.rawValue , iconInactive: Icons.favourites.rawValue, vc: NotificationsViewController())
-        let profileDetailsScreen = createTab(iconActive: "bookmarkActive", iconInactive: "bookmarkInactive", vc: ProfileDetailsViewController())
+        let home = createTab(iconActive: Icons.homePageHighlighted.rawValue, iconInactive: Icons.homePage.rawValue, vc: homePageViewController(), identifier: "homeTab")
+        let discover = createTab(iconActive: Icons.searchHighlighted.rawValue , iconInactive: Icons.search.rawValue, vc: DiscoverPageViewController(), identifier: "discoverTab")
+        let addContent = createTab(iconActive: Icons.addContent.rawValue , iconInactive: Icons.addContent.rawValue, vc: UIViewController(), identifier: "addContentTab")
+        let notifications = createTab(iconActive: Icons.favouritesHighlighted.rawValue , iconInactive: Icons.favourites.rawValue, vc: NotificationsViewController(), identifier: "notificationsTab")
+        let profileDetailsScreen = createTab(iconActive: "bookmarkActive", iconInactive: "bookmarkInactive", vc: ProfileDetailsViewController(), identifier: "profileDetailsTab")
         
         customizeTabBarAppearance()
         
         setViewControllers([home, discover, addContent, notifications, profileDetailsScreen], animated: true)
     }
     
-    private func createTab(iconActive: String, iconInactive: String, vc: UIViewController) -> UIViewController {
+    private func createTab(iconActive: String, iconInactive: String, vc: UIViewController, identifier: String) -> UIViewController {
         let activeImage = UIImage(named: iconActive)
         let inactiveImage = UIImage(named: iconInactive)
         
         let tabBarItem = UITabBarItem(title: nil, image: inactiveImage, selectedImage: activeImage)
         tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         tabBarItem.badgeColor = .black
+        tabBarItem.accessibilityIdentifier = identifier
         vc.tabBarItem = tabBarItem
         
         return vc
