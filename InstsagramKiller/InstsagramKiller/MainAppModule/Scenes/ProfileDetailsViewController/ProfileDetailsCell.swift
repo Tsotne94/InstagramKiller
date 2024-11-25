@@ -198,7 +198,7 @@ class ProfileDetailsCell: UITableViewCell, UICollectionViewDataSource, UICollect
             profileImage.heightAnchor.constraint(equalToConstant: 93),
             
             followersInfoStackView.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor),
-            followersInfoStackView.rightAnchor.constraint(equalTo: profileDetailsView.rightAnchor, constant: -10),
+            followersInfoStackView.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 40),
             
             addStoryIcon.bottomAnchor.constraint(equalTo: profileImageContainer.bottomAnchor, constant: -2),
             addStoryIcon.rightAnchor.constraint(equalTo: profileImageContainer.rightAnchor, constant: -2),
