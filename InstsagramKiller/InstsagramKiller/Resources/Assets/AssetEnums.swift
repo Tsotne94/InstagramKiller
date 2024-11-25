@@ -39,6 +39,7 @@ public enum Icons: String {
     case searchHighlighted = "searchIconHighlighted"
     case share = "shareIcon"
     case verified = "verificationIcon"
+    case ProfilePicture = "goat"
 }
 
 // MARK: - Instagram Logo

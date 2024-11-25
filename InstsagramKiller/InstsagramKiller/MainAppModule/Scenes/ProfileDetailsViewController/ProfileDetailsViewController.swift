@@ -9,6 +9,7 @@ import UIKit
 class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ProfileDetailsCellDelegate, UserViewModelDelegate {
     
     let userViewModel = UserViewModel()
+    let profileDetailsCell = ProfileDetailsCell()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
