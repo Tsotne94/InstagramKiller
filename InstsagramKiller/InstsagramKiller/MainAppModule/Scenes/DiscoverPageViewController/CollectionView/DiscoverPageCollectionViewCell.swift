@@ -44,7 +44,17 @@ final class DiscoverPageCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func setImage(_ image: UIImage) {
-        imageView.image = image
+    func loadImage(from url: URL) {
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                print("Error loading image: \(error)")
+                return
+            }
+            guard let data = data, let image = UIImage(data: data) else { return }
+            
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }.resume()
     }
 }

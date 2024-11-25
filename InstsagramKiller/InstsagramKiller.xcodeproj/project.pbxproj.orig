@@ -49,6 +49,10 @@
 				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewLayout.swift,
 				MainAppModule/Scenes/DiscoverPageViewController/DiscoverPageViewController.swift,
 				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
+<<<<<<< HEAD
+				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
+=======
+>>>>>>> eab164f932db743fa63d893116ee6eb9da8c9d99
 				"Resources/Fonts/SF-Pro-Text-Regular.otf",
 				"Resources/Fonts/SF-Pro-Text-Semibold.otf",
 			);

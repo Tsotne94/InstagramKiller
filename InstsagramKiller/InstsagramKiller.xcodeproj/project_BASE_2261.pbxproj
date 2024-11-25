@@ -49,6 +49,13 @@
 				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewLayout.swift,
 				MainAppModule/Scenes/DiscoverPageViewController/DiscoverPageViewController.swift,
 				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
+				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
+				MainAppModule/Scenes/NotificationsViewController/NotificationsViewController.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/EditProfileVC/EditProfileVC.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/FeedCollectionViewCell.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsCell.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsViewController.swift,
+				Resources/Fonts/Fonts.swift,
 				"Resources/Fonts/SF-Pro-Text-Regular.otf",
 				"Resources/Fonts/SF-Pro-Text-Semibold.otf",
 			);
@@ -57,6 +64,18 @@
 		1FEBC8F02CF080B9000D6953 /* Exceptions for "InstsagramKiller" folder in "InstsagramKillerUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionView.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewCell.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/CollectionView/DiscoverPageCollectionViewLayout.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/DiscoverPageViewController.swift,
+				MainAppModule/Scenes/DiscoverPageViewController/SearchBar/DiscoverPageSearchBarView.swift,
+				MainAppModule/Scenes/LoginPageViewController/LoginPageViewController.swift,
+				MainAppModule/Scenes/NotificationsViewController/NotificationsViewController.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/EditProfileVC/EditProfileVC.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/FeedCollectionViewCell.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsCell.swift,
+				MainAppModule/Scenes/ProfileDetailsViewController/ProfileDetailsViewController.swift,
+				Resources/Fonts/Fonts.swift,
 				"Resources/Fonts/SF-Pro-Text-Regular.otf",
 				"Resources/Fonts/SF-Pro-Text-Semibold.otf",
 			);
@@ -493,10 +512,9 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6769JBWNT9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -513,10 +531,9 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6769JBWNT9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -534,7 +551,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6769JBWNT9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -552,7 +568,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6769JBWNT9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tbc.academy.InstsagramKillerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

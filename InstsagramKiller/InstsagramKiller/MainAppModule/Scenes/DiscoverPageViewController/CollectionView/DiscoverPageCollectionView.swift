@@ -6,12 +6,12 @@
 //
 import UIKit
 import Foundation
+
 class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     private var collectionView: UICollectionView!
     private let customLayout = DiscoverPageCollectionViewLayout()
-    
-    let imageNames = (1...21).map { "i\($0)" }
+    private let viewModel = DiscoverPageViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,29 +53,27 @@ class DiscoverPageCollectionView: UIView, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imageNames.count
+        return viewModel.postCount
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverPageCollectionViewCell.reuseIdentifier, for: indexPath) as! DiscoverPageCollectionViewCell
-        
-        if let image = UIImage(named: imageNames[indexPath.item]) {
-            cell.setImage(image)
-        }
+        let url = viewModel.getUrl(from: indexPath.item)
+        cell.loadImage(from: url )
         return cell
     }
     
     // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let searchView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DiscoverPageSearchBarView.reuseIdentifier , for: indexPath) as! DiscoverPageSearchBarView
-        searchView.delegate = self
+        searchView.setDelegate(viewModel)
         return searchView
     }
 }
 
-extension DiscoverPageCollectionView: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            print("Search text: \(searchText)")
+extension DiscoverPageCollectionView: ReloadAble {
+    func reload() {
+        collectionView.reloadData()
     }
 }
 

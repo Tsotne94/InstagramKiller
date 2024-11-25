@@ -9,7 +9,6 @@ import UIKit
 
 class DiscoverPageSearchBarView: UICollectionReusableView, ReuseIdentifying {
     var searchBar: UISearchBar!
-    weak var delegate: UISearchBarDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,5 +34,9 @@ class DiscoverPageSearchBarView: UICollectionReusableView, ReuseIdentifying {
             searchBar.topAnchor.constraint(equalTo: topAnchor),
             searchBar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7)
         ])
+    }
+    
+    func setDelegate(_ delegate: UISearchBarDelegate) {
+        searchBar.delegate = delegate
     }
 }

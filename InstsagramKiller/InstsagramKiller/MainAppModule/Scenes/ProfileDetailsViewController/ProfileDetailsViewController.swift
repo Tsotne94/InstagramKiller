@@ -6,8 +6,11 @@
 //
 import UIKit
 
-class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ProfileDetailsCellDelegate {
-
+class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ProfileDetailsCellDelegate, UserViewModelDelegate {
+    
+    let userViewModel = UserViewModel()
+    let profileDetailsCell = ProfileDetailsCell()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ProfileDetailsCell.self, forCellReuseIdentifier: ProfileDetailsCell.identifier)
@@ -21,12 +24,14 @@ class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UIT
     private var feedImages: [UIImage] = {
         return (1...13).compactMap { UIImage(named: "image\($0)") }
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
         setupTableView()
+        userViewModel.delegate = self
+        userViewModel.fetchUser(from: "http://localhost:3000/v1/self/info")
     }
     
     private func setupTableView() {
@@ -42,11 +47,19 @@ class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UIT
         ])
     }
     
+    func didFetchUserData() {
+        tableView.reloadData()
+    }
+    
+    func didFailWithError(_ error: String) {
+        print("Failed to fetch user data: \(error)")
+    }
+    
     func didPressEditButton() {
         let editProfileVC = EditProfileVC()
         navigationController?.pushViewController(editProfileVC, animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
@@ -56,6 +69,9 @@ class ProfileDetailsViewController: UIViewController, UITableViewDataSource, UIT
             let cell = tableView.dequeueReusableCell(withIdentifier: ProfileDetailsCell.identifier, for: indexPath) as! ProfileDetailsCell
             cell.isUserInteractionEnabled = true
             cell.delegate = self
+            if let user = userViewModel.user {
+                cell.configure(with: user)
+            }
             cell.selectionStyle = .none
             return cell
         } else {
