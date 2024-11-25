@@ -57,7 +57,7 @@ class NotificationsVM {
                 username: jsonItem.usernames.joined(separator: ", "),
                 action: jsonItem.action,
                 timestamp: jsonItem.time_ago,
-                postImage: nil,
+                postImage: jsonItem.photo_link,
                 followed: followed
             )
         }

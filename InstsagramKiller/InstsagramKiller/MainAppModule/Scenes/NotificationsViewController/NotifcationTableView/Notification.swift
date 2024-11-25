@@ -28,6 +28,7 @@ struct NotificationJSONItem: Codable {
     let profile_picture: String
     let usernames: [String]
     let time_ago: String
+    let photo_link: String?
 }
 
 struct NotificationSections: Codable {

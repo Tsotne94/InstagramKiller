@@ -62,7 +62,7 @@ class CustomCell: UITableViewCell {
             messageLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
             
             postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            postImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            postImageView.centerYAnchor.constraint(equalTo: messageLabel.centerYAnchor),
             postImageView.widthAnchor.constraint(equalToConstant: 40),
             postImageView.heightAnchor.constraint(equalToConstant: 40),
             
@@ -102,8 +102,8 @@ class CustomCell: UITableViewCell {
         
         messageLabel.attributedText = attributedText
         
-        if let postImage = item.postImage {
-            postImageView.image = UIImage(named: postImage)
+        if let postImageURL = item.postImage, let url = URL(string: postImageURL) {
+            loadPostImage(from: url)
             postImageView.isHidden = false
         } else {
             postImageView.isHidden = true
@@ -128,6 +128,25 @@ class CustomCell: UITableViewCell {
             }
         }.resume()
     }
+    
+    private func loadPostImage(from url: URL) {
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            if let error = error {
+                print("Error loading post image: \(error)")
+                return
+            }
+            
+            guard let data = data, let image = UIImage(data: data) else {
+                print("Error: Unable to convert data to image.")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self?.postImageView.image = image
+            }
+        }.resume()
+    }
+
 }
 
 
